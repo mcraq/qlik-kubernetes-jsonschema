@@ -1,0 +1,1810 @@
+{
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "networking.istio.io/v1alpha3"
+      ]
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "VirtualService"
+      ]
+    },
+    "metadata": {
+      "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "annotations": {
+          "description": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "creationTimestamp": {
+          "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "deletionGracePeriodSeconds": {
+          "description": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int64"
+        },
+        "deletionTimestamp": {
+          "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "finalizers": {
+          "description": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "x-kubernetes-list-type": "set",
+          "x-kubernetes-patch-strategy": "merge"
+        },
+        "generateName": {
+          "description": "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.\n\nIf this field is specified and the generated name exists, the server will return a 409.\n\nApplied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "generation": {
+          "description": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int64"
+        },
+        "labels": {
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "managedFields": {
+          "description": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "description": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.",
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "fieldsType": {
+                "description": "FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: \"FieldsV1\"",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "fieldsV1": {
+                "description": "FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.\n\nEach key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.\n\nThe exact format is defined in sigs.k8s.io/structured-merge-diff",
+                "type": [
+                  "object",
+                  "null"
+                ]
+              },
+              "manager": {
+                "description": "Manager is an identifier of the workflow managing these fields.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "operation": {
+                "description": "Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "subresource": {
+                "description": "Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "time": {
+                "description": "Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              }
+            }
+          },
+          "x-kubernetes-list-type": "atomic"
+        },
+        "name": {
+          "description": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "namespace": {
+          "description": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.\n\nMust be a DNS_LABEL. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ownerReferences": {
+          "description": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "description": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.",
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "apiVersion",
+              "kind",
+              "name",
+              "uid"
+            ],
+            "properties": {
+              "apiVersion": {
+                "description": "API version of the referent.",
+                "type": "string"
+              },
+              "blockOwnerDeletion": {
+                "description": "If true, AND if the owner has the \"foregroundDeletion\" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs \"delete\" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "controller": {
+                "description": "If true, this reference points to the managing controller.",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "kind": {
+                "description": "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+                "type": "string"
+              },
+              "name": {
+                "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+                "type": "string"
+              },
+              "uid": {
+                "description": "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+                "type": "string"
+              }
+            },
+            "x-kubernetes-map-type": "atomic"
+          },
+          "x-kubernetes-list-map-keys": [
+            "uid"
+          ],
+          "x-kubernetes-list-type": "map",
+          "x-kubernetes-patch-merge-key": "uid",
+          "x-kubernetes-patch-strategy": "merge"
+        },
+        "resourceVersion": {
+          "description": "An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.\n\nPopulated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "selfLink": {
+          "description": "Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "uid": {
+          "description": "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.\n\nPopulated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "spec": {
+      "description": "Configuration affecting label/content routing, sni routing, etc. See more details at: https://istio.io/docs/reference/config/networking/virtual-service.html",
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "exportTo": {
+          "description": "A list of namespaces to which this virtual service is exported.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "gateways": {
+          "description": "The names of gateways and sidecars that should apply these routes.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "hosts": {
+          "description": "The destination hosts to which traffic is being sent.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "http": {
+          "description": "An ordered list of route rules for HTTP traffic.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "corsPolicy": {
+                "description": "Cross-Origin Resource Sharing policy (CORS).",
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "allowCredentials": {
+                    "description": "Indicates whether the caller is allowed to send the actual request (not the preflight) using credentials."
+                  },
+                  "allowHeaders": {
+                    "description": "List of HTTP headers that can be used when requesting the resource.",
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "allowMethods": {
+                    "description": "List of HTTP methods allowed to access the resource.",
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "allowOrigin": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "allowOrigins": {
+                    "description": "String patterns that match allowed origins.",
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "exact": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "prefix": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "regex": {
+                          "description": "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "exposeHeaders": {
+                    "description": "A list of HTTP headers that the browsers are allowed to access.",
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "maxAge": {
+                    "description": "Specifies how long the results of a preflight request can be cached.",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "x-kubernetes-validations": [
+                      {
+                        "message": "must be a valid duration greater than 1ms",
+                        "rule": "duration(self) >= duration('1ms')"
+                      }
+                    ]
+                  },
+                  "unmatchedPreflights": {
+                    "description": "Indicates whether preflight requests not matching the configured allowed origin shouldn't be forwarded to the upstream.\n\nValid Options: FORWARD, IGNORE",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "enum": [
+                      "UNSPECIFIED",
+                      "FORWARD",
+                      "IGNORE"
+                    ]
+                  }
+                }
+              },
+              "delegate": {
+                "description": "Delegate is used to specify the particular VirtualService which can be used to define delegate HTTPRoute.",
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "name": {
+                    "description": "Name specifies the name of the delegate VirtualService.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "namespace": {
+                    "description": "Namespace specifies the namespace where the delegate VirtualService resides.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              },
+              "directResponse": {
+                "description": "A HTTP rule can either return a direct_response, redirect or forward (default) traffic.",
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "body": {
+                    "description": "Specifies the content of the response body.",
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "bytes": {
+                        "description": "response body as base64 encoded bytes.",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "format": "binary"
+                      },
+                      "string": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    }
+                  },
+                  "status": {
+                    "description": "Specifies the HTTP response status to be returned.",
+                    "type": "integer",
+                    "maximum": 4294967295,
+                    "minimum": 0
+                  }
+                }
+              },
+              "fault": {
+                "description": "Fault injection policy to apply on HTTP traffic at the client side.",
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "abort": {
+                    "description": "Abort Http request attempts and return error codes back to downstream service, giving the impression that the upstream service is faulty.",
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "grpcStatus": {
+                        "description": "GRPC status code to use to abort the request.",
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "http2Error": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "httpStatus": {
+                        "description": "HTTP status code to use to abort the Http request.",
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
+                        "format": "int32"
+                      },
+                      "percentage": {
+                        "description": "Percentage of requests to be aborted with the error code provided.",
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "number",
+                              "null"
+                            ],
+                            "format": "double"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "delay": {
+                    "description": "Delay requests before forwarding, emulating various failures such as network issues, overloaded upstream service, etc.",
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "exponentialDelay": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "x-kubernetes-validations": [
+                          {
+                            "message": "must be a valid duration greater than 1ms",
+                            "rule": "duration(self) >= duration('1ms')"
+                          }
+                        ]
+                      },
+                      "fixedDelay": {
+                        "description": "Add a fixed delay before forwarding the request.",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "x-kubernetes-validations": [
+                          {
+                            "message": "must be a valid duration greater than 1ms",
+                            "rule": "duration(self) >= duration('1ms')"
+                          }
+                        ]
+                      },
+                      "percent": {
+                        "description": "Percentage of requests on which the delay will be injected (0-100).",
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
+                        "format": "int32"
+                      },
+                      "percentage": {
+                        "description": "Percentage of requests on which the delay will be injected.",
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "number",
+                              "null"
+                            ],
+                            "format": "double"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "headers": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "request": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "add": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "additionalProperties": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "remove": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "items": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "set": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "additionalProperties": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "response": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "add": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "additionalProperties": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "remove": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "items": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "set": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "additionalProperties": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "match": {
+                "description": "Match conditions to be satisfied for the rule to be activated.",
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "authority": {
+                      "description": "HTTP Authority values are case-sensitive and formatted as follows: - `exact: \"value\"` for exact string match - `prefix: \"value\"` for prefix-based match - `regex: \"value\"` for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "exact": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "prefix": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "regex": {
+                          "description": "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    },
+                    "gateways": {
+                      "description": "Names of gateways where the rule should be applied.",
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "headers": {
+                      "description": "The header keys must be lowercase and use hyphen as the separator, e.g.",
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "additionalProperties": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "exact": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "prefix": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "regex": {
+                            "description": "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "ignoreUriCase": {
+                      "description": "Flag to specify whether the URI matching should be case-insensitive.",
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "method": {
+                      "description": "HTTP Method values are case-sensitive and formatted as follows: - `exact: \"value\"` for exact string match - `prefix: \"value\"` for prefix-based match - `regex: \"value\"` for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "exact": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "prefix": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "regex": {
+                          "description": "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    },
+                    "name": {
+                      "description": "The name assigned to a match.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "port": {
+                      "description": "Specifies the ports on the host that is being addressed.",
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "maximum": 4294967295,
+                      "minimum": 0
+                    },
+                    "queryParams": {
+                      "description": "Query parameters for matching.",
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "additionalProperties": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "exact": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "prefix": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "regex": {
+                            "description": "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "scheme": {
+                      "description": "URI Scheme values are case-sensitive and formatted as follows: - `exact: \"value\"` for exact string match - `prefix: \"value\"` for prefix-based match - `regex: \"value\"` for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "exact": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "prefix": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "regex": {
+                          "description": "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    },
+                    "sourceLabels": {
+                      "description": "One or more labels that constrain the applicability of a rule to source (client) workloads with the given labels.",
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "additionalProperties": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "sourceNamespace": {
+                      "description": "Source namespace constraining the applicability of a rule to workloads in that namespace.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "statPrefix": {
+                      "description": "The human readable prefix to use when emitting statistics for this route.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "uri": {
+                      "description": "URI to match values are case-sensitive and formatted as follows: - `exact: \"value\"` for exact string match - `prefix: \"value\"` for prefix-based match - `regex: \"value\"` for [RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "exact": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "prefix": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "regex": {
+                          "description": "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    },
+                    "withoutHeaders": {
+                      "description": "withoutHeader has the same syntax with the header, but has opposite meaning.",
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "additionalProperties": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "exact": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "prefix": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "regex": {
+                            "description": "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "mirror": {
+                "description": "Mirror HTTP traffic to a another destination in addition to forwarding the requests to the intended destination.",
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "required": [
+                  "host"
+                ],
+                "properties": {
+                  "host": {
+                    "description": "The name of a service from the service registry.",
+                    "type": "string"
+                  },
+                  "port": {
+                    "description": "Specifies the port on the host that is being addressed.",
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "number": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
+                        "maximum": 4294967295,
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  "subset": {
+                    "description": "The name of a subset within the service.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              },
+              "mirrorPercent": {
+                "maximum": 4294967295,
+                "minimum": 0
+              },
+              "mirrorPercentage": {
+                "description": "Percentage of the traffic to be mirrored by the `mirror` field.",
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "format": "double"
+                  }
+                }
+              },
+              "mirror_percent": {
+                "maximum": 4294967295,
+                "minimum": 0
+              },
+              "mirrors": {
+                "description": "Specifies the destinations to mirror HTTP traffic in addition to the original destination.",
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "required": [
+                    "destination"
+                  ],
+                  "properties": {
+                    "destination": {
+                      "description": "Destination specifies the target of the mirror operation.",
+                      "type": "object",
+                      "required": [
+                        "host"
+                      ],
+                      "properties": {
+                        "host": {
+                          "description": "The name of a service from the service registry.",
+                          "type": "string"
+                        },
+                        "port": {
+                          "description": "Specifies the port on the host that is being addressed.",
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "number": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ],
+                              "maximum": 4294967295,
+                              "minimum": 0
+                            }
+                          }
+                        },
+                        "subset": {
+                          "description": "The name of a subset within the service.",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    },
+                    "percentage": {
+                      "description": "Percentage of the traffic to be mirrored by the `destination` field.",
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "value": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "format": "double"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "name": {
+                "description": "The name assigned to the route for debugging purposes.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "redirect": {
+                "description": "A HTTP rule can either return a direct_response, redirect or forward (default) traffic.",
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "authority": {
+                    "description": "On a redirect, overwrite the Authority/Host portion of the URL with this value.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "derivePort": {
+                    "description": "On a redirect, dynamically set the port: * FROM_PROTOCOL_DEFAULT: automatically set to 80 for HTTP and 443 for HTTPS.\n\nValid Options: FROM_PROTOCOL_DEFAULT, FROM_REQUEST_PORT",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "enum": [
+                      "FROM_PROTOCOL_DEFAULT",
+                      "FROM_REQUEST_PORT"
+                    ]
+                  },
+                  "port": {
+                    "description": "On a redirect, overwrite the port portion of the URL with this value.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "maximum": 4294967295,
+                    "minimum": 0
+                  },
+                  "redirectCode": {
+                    "description": "On a redirect, Specifies the HTTP status code to use in the redirect response.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "maximum": 4294967295,
+                    "minimum": 0
+                  },
+                  "scheme": {
+                    "description": "On a redirect, overwrite the scheme portion of the URL with this value.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "uri": {
+                    "description": "On a redirect, overwrite the Path portion of the URL with this value.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              },
+              "retries": {
+                "description": "Retry policy for HTTP requests.",
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "attempts": {
+                    "description": "Number of retries to be allowed for a given request.",
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "format": "int32"
+                  },
+                  "perTryTimeout": {
+                    "description": "Timeout per attempt for a given request, including the initial call and any retries.",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "x-kubernetes-validations": [
+                      {
+                        "message": "must be a valid duration greater than 1ms",
+                        "rule": "duration(self) >= duration('1ms')"
+                      }
+                    ]
+                  },
+                  "retryOn": {
+                    "description": "Specifies the conditions under which retry takes place.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "retryRemoteLocalities": {
+                    "description": "Flag to specify whether the retries should retry to other localities."
+                  }
+                }
+              },
+              "rewrite": {
+                "description": "Rewrite HTTP URIs and Authority headers.",
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "authority": {
+                    "description": "rewrite the Authority/Host header with this value.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "uri": {
+                    "description": "rewrite the path (or the prefix) portion of the URI with this value.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "uriRegexRewrite": {
+                    "description": "rewrite the path portion of the URI with the specified regex.",
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "match": {
+                        "description": "[RE2 style regex-based match](https://github.com/google/re2/wiki/Syntax).",
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "rewrite": {
+                        "description": "The string that should replace into matching portions of original URI.",
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "route": {
+                "description": "A HTTP rule can either return a direct_response, redirect or forward (default) traffic.",
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "required": [
+                    "destination"
+                  ],
+                  "properties": {
+                    "destination": {
+                      "description": "Destination uniquely identifies the instances of a service to which the request/connection should be forwarded to.",
+                      "type": "object",
+                      "required": [
+                        "host"
+                      ],
+                      "properties": {
+                        "host": {
+                          "description": "The name of a service from the service registry.",
+                          "type": "string"
+                        },
+                        "port": {
+                          "description": "Specifies the port on the host that is being addressed.",
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "number": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ],
+                              "maximum": 4294967295,
+                              "minimum": 0
+                            }
+                          }
+                        },
+                        "subset": {
+                          "description": "The name of a subset within the service.",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    },
+                    "headers": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "request": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "add": {
+                              "type": [
+                                "object",
+                                "null"
+                              ],
+                              "additionalProperties": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "remove": {
+                              "type": [
+                                "array",
+                                "null"
+                              ],
+                              "items": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "set": {
+                              "type": [
+                                "object",
+                                "null"
+                              ],
+                              "additionalProperties": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        "response": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "add": {
+                              "type": [
+                                "object",
+                                "null"
+                              ],
+                              "additionalProperties": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "remove": {
+                              "type": [
+                                "array",
+                                "null"
+                              ],
+                              "items": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "set": {
+                              "type": [
+                                "object",
+                                "null"
+                              ],
+                              "additionalProperties": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "weight": {
+                      "description": "Weight specifies the relative proportion of traffic to be forwarded to the destination.",
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "format": "int32"
+                    }
+                  }
+                }
+              },
+              "timeout": {
+                "description": "Timeout for HTTP requests, default is disabled.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "x-kubernetes-validations": [
+                  {
+                    "message": "must be a valid duration greater than 1ms",
+                    "rule": "duration(self) >= duration('1ms')"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "tcp": {
+          "description": "An ordered list of route rules for opaque TCP traffic.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "match": {
+                "description": "Match conditions to be satisfied for the rule to be activated.",
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "destinationSubnets": {
+                      "description": "IPv4 or IPv6 ip addresses of destination with optional subnet.",
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "gateways": {
+                      "description": "Names of gateways where the rule should be applied.",
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "port": {
+                      "description": "Specifies the port on the host that is being addressed.",
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "maximum": 4294967295,
+                      "minimum": 0
+                    },
+                    "sourceLabels": {
+                      "description": "One or more labels that constrain the applicability of a rule to workloads with the given labels.",
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "additionalProperties": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "sourceNamespace": {
+                      "description": "Source namespace constraining the applicability of a rule to workloads in that namespace.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "sourceSubnet": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              },
+              "route": {
+                "description": "The destination to which the connection should be forwarded to.",
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "required": [
+                    "destination"
+                  ],
+                  "properties": {
+                    "destination": {
+                      "description": "Destination uniquely identifies the instances of a service to which the request/connection should be forwarded to.",
+                      "type": "object",
+                      "required": [
+                        "host"
+                      ],
+                      "properties": {
+                        "host": {
+                          "description": "The name of a service from the service registry.",
+                          "type": "string"
+                        },
+                        "port": {
+                          "description": "Specifies the port on the host that is being addressed.",
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "number": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ],
+                              "maximum": 4294967295,
+                              "minimum": 0
+                            }
+                          }
+                        },
+                        "subset": {
+                          "description": "The name of a subset within the service.",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    },
+                    "weight": {
+                      "description": "Weight specifies the relative proportion of traffic to be forwarded to the destination.",
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tls": {
+          "description": "An ordered list of route rule for non-terminated TLS & HTTPS traffic.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "match"
+            ],
+            "properties": {
+              "match": {
+                "description": "Match conditions to be satisfied for the rule to be activated.",
+                "type": "array",
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "required": [
+                    "sniHosts"
+                  ],
+                  "properties": {
+                    "destinationSubnets": {
+                      "description": "IPv4 or IPv6 ip addresses of destination with optional subnet.",
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "gateways": {
+                      "description": "Names of gateways where the rule should be applied.",
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "port": {
+                      "description": "Specifies the port on the host that is being addressed.",
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "maximum": 4294967295,
+                      "minimum": 0
+                    },
+                    "sniHosts": {
+                      "description": "SNI (server name indicator) to match on.",
+                      "type": "array",
+                      "items": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "sourceLabels": {
+                      "description": "One or more labels that constrain the applicability of a rule to workloads with the given labels.",
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "additionalProperties": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "sourceNamespace": {
+                      "description": "Source namespace constraining the applicability of a rule to workloads in that namespace.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              },
+              "route": {
+                "description": "The destination to which the connection should be forwarded to.",
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "required": [
+                    "destination"
+                  ],
+                  "properties": {
+                    "destination": {
+                      "description": "Destination uniquely identifies the instances of a service to which the request/connection should be forwarded to.",
+                      "type": "object",
+                      "required": [
+                        "host"
+                      ],
+                      "properties": {
+                        "host": {
+                          "description": "The name of a service from the service registry.",
+                          "type": "string"
+                        },
+                        "port": {
+                          "description": "Specifies the port on the host that is being addressed.",
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "number": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ],
+                              "maximum": 4294967295,
+                              "minimum": 0
+                            }
+                          }
+                        },
+                        "subset": {
+                          "description": "The name of a subset within the service.",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    },
+                    "weight": {
+                      "description": "Weight specifies the relative proportion of traffic to be forwarded to the destination.",
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "status": {
+      "x-kubernetes-preserve-unknown-fields": true
+    }
+  },
+  "x-kubernetes-group-version-kind": [
+    {
+      "group": "networking.istio.io",
+      "kind": "VirtualService",
+      "version": "v1alpha3"
+    }
+  ],
+  "$schema": "http://json-schema.org/schema#"
+}

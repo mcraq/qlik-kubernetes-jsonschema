@@ -1,18 +1,20 @@
 #!/bin/bash -xe
 
-ARGOCD_VERSION='v1.8.3'
-OPENAPI2JSONSCHEMABIN="docker run -i -v ${PWD}:/out/schemas ghcr.io/yannh/openapi2jsonschema:latest"
+VERSION='2025-08-22'
+OPENAPI2JSONSCHEMABIN="docker run -i -v ${PWD}:/out/schemas ghcr.io/mcraq/openapi2jsonschema:latest"
 
-SCHEMA=https://raw.githubusercontent.com/argoproj/argo-rollouts/refs/tags/${ARGOCD_VERSION}/pkg/apiclient/rollout/rollout.swagger.json
-PREFIX=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/${K8S_VERSION}/_definitions.json
+## To retrieve swagger.json:
+## $ kubectl get --raw /openapi/v2 > swagger.json
 
-rm -Rf schemas/${K8S_VERSION}
+SCHEMA=swagger.json
 
-$OPENAPI2JSONSCHEMABIN -o "schemas/${ARGOCD_VERSION}/json" --expanded --kubernetes --stand-alone "${SCHEMA}"
-$OPENAPI2JSONSCHEMABIN -o "schemas/${ARGOCD_VERSION}/json" --kubernetes --stand-alone "${SCHEMA}"
+rm -Rf schemas/${VERSION}
 
-mkdir -p ${ARGOCD_VERSION}/yaml
-for JSON in $(ls ${ARGOCD_VERSION}/json/*.json); do
+$OPENAPI2JSONSCHEMABIN -o "schemas/${VERSION}/json" --expanded --kubernetes --stand-alone "/out/schemas/${SCHEMA}"
+$OPENAPI2JSONSCHEMABIN -o "schemas/${VERSION}/json" --kubernetes --stand-alone "/out/schemas/${SCHEMA}"
+
+mkdir -p ${VERSION}/yaml
+for JSON in $(ls ${VERSION}/json/*.json); do
     BASENAME=$(basename ${JSON})
-    yq -p json -o yaml "${JSON}" > "${ARGOCD_VERSION}/yaml/${BASENAME%.json}.yaml"
+    yq -p json -o yaml "${JSON}" > "${VERSION}/yaml/${BASENAME%.json}.yaml"
 done

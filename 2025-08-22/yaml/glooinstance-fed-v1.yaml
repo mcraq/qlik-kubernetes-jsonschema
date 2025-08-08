@@ -1,0 +1,6 @@
+type: object
+x-kubernetes-group-version-kind:
+  - group: fed.solo.io
+    kind: GlooInstance
+    version: v1
+$schema: http://json-schema.org/schema#
