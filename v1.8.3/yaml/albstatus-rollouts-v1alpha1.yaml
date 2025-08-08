@@ -1,0 +1,67 @@
+type: object
+properties:
+  loadBalancer:
+    type:
+      - object
+      - "null"
+    properties:
+      name:
+        type:
+          - string
+          - "null"
+      arn:
+        type:
+          - string
+          - "null"
+      fullName:
+        type:
+          - string
+          - "null"
+        title: |-
+          FullName is the full name of the resource
+          +optional
+  canaryTargetGroup:
+    type:
+      - object
+      - "null"
+    properties:
+      name:
+        type:
+          - string
+          - "null"
+      arn:
+        type:
+          - string
+          - "null"
+      fullName:
+        type:
+          - string
+          - "null"
+        title: |-
+          FullName is the full name of the resource
+          +optional
+  stableTargetGroup:
+    type:
+      - object
+      - "null"
+    properties:
+      name:
+        type:
+          - string
+          - "null"
+      arn:
+        type:
+          - string
+          - "null"
+      fullName:
+        type:
+          - string
+          - "null"
+        title: |-
+          FullName is the full name of the resource
+          +optional
+  ingress:
+    type:
+      - string
+      - "null"
+$schema: http://json-schema.org/schema#

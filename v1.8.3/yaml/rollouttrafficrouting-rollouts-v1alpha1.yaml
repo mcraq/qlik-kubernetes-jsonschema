@@ -1,0 +1,429 @@
+type: object
+properties:
+  istio:
+    type:
+      - object
+      - "null"
+    properties:
+      virtualService:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+            title: Name holds the name of the VirtualService
+          routes:
+            type:
+              - array
+              - "null"
+            items:
+              type:
+                - string
+                - "null"
+            description: A list of HTTP routes within VirtualService to edit. If omitted, VirtualService must have a single route of this type.
+          tlsRoutes:
+            type:
+              - array
+              - "null"
+            items:
+              type:
+                - object
+                - "null"
+              properties:
+                port:
+                  type:
+                    - string
+                    - "null"
+                  format: int64
+                  description: Port number of the TLS Route desired to be matched in the given Istio VirtualService.
+                sniHosts:
+                  type:
+                    - array
+                    - "null"
+                  items:
+                    type:
+                      - string
+                      - "null"
+                  description: A list of all the SNI Hosts of the TLS Route desired to be matched in the given Istio VirtualService.
+              description: TLSRoute holds the information on the virtual service's TLS/HTTPS routes that are desired to be matched for changing weights.
+            description: A list of TLS/HTTPS routes within VirtualService to edit. If omitted, VirtualService must have a single route of this type.
+          tcpRoutes:
+            type:
+              - array
+              - "null"
+            items:
+              type:
+                - object
+                - "null"
+              properties:
+                port:
+                  type:
+                    - string
+                    - "null"
+                  format: int64
+                  description: Port number of the TCP Route desired to be matched in the given Istio VirtualService.
+              description: TCPRoute holds the information on the virtual service's TCP routes that are desired to be matched for changing weights.
+            description: A list of TCP routes within VirtualService to edit. If omitted, VirtualService must have a single route of this type.
+        title: IstioVirtualService holds information on the virtual service the rollout needs to modify
+      destinationRule:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+            title: Name holds the name of the DestinationRule
+          canarySubsetName:
+            type:
+              - string
+              - "null"
+            title: CanarySubsetName is the subset name to modify labels with canary ReplicaSet pod template hash value
+          stableSubsetName:
+            type:
+              - string
+              - "null"
+            title: StableSubsetName is the subset name to modify labels with stable ReplicaSet pod template hash value
+        title: IstioDestinationRule is a reference to an Istio DestinationRule to modify and shape traffic
+      virtualServices:
+        type:
+          - array
+          - "null"
+        items:
+          type:
+            - object
+            - "null"
+          properties:
+            name:
+              type:
+                - string
+                - "null"
+              title: Name holds the name of the VirtualService
+            routes:
+              type:
+                - array
+                - "null"
+              items:
+                type:
+                  - string
+                  - "null"
+              description: A list of HTTP routes within VirtualService to edit. If omitted, VirtualService must have a single route of this type.
+            tlsRoutes:
+              type:
+                - array
+                - "null"
+              items:
+                type:
+                  - object
+                  - "null"
+                properties:
+                  port:
+                    type:
+                      - string
+                      - "null"
+                    format: int64
+                    description: Port number of the TLS Route desired to be matched in the given Istio VirtualService.
+                  sniHosts:
+                    type:
+                      - array
+                      - "null"
+                    items:
+                      type:
+                        - string
+                        - "null"
+                    description: A list of all the SNI Hosts of the TLS Route desired to be matched in the given Istio VirtualService.
+                description: TLSRoute holds the information on the virtual service's TLS/HTTPS routes that are desired to be matched for changing weights.
+              description: A list of TLS/HTTPS routes within VirtualService to edit. If omitted, VirtualService must have a single route of this type.
+            tcpRoutes:
+              type:
+                - array
+                - "null"
+              items:
+                type:
+                  - object
+                  - "null"
+                properties:
+                  port:
+                    type:
+                      - string
+                      - "null"
+                    format: int64
+                    description: Port number of the TCP Route desired to be matched in the given Istio VirtualService.
+                description: TCPRoute holds the information on the virtual service's TCP routes that are desired to be matched for changing weights.
+              description: A list of TCP routes within VirtualService to edit. If omitted, VirtualService must have a single route of this type.
+          title: IstioVirtualService holds information on the virtual service the rollout needs to modify
+        title: VirtualServices references a list of Istio VirtualService to modify to shape traffic
+    title: IstioTrafficRouting configuration for Istio service mesh to enable fine grain configuration
+  nginx:
+    type:
+      - object
+      - "null"
+    properties:
+      annotationPrefix:
+        type:
+          - string
+          - "null"
+        title: |-
+          AnnotationPrefix has to match the configured annotation prefix on the nginx ingress controller
+          +optional
+      stableIngress:
+        type:
+          - string
+          - "null"
+        title: StableIngress refers to the name of an `Ingress` resource in the same namespace as the `Rollout`
+      additionalIngressAnnotations:
+        type:
+          - object
+          - "null"
+        additionalProperties:
+          type:
+            - string
+            - "null"
+        title: +optional
+      stableIngresses:
+        type:
+          - array
+          - "null"
+        items:
+          type:
+            - string
+            - "null"
+        title: |-
+          StableIngresses refers to the names of `Ingress` resources in the same namespace as the `Rollout` in a multi ingress scenario
+          +optional
+      canaryIngressAnnotations:
+        type:
+          - object
+          - "null"
+        additionalProperties:
+          type:
+            - string
+            - "null"
+        title: +optional
+    title: NginxTrafficRouting configuration for Nginx ingress controller to control traffic routing
+  alb:
+    type:
+      - object
+      - "null"
+    properties:
+      ingress:
+        type:
+          - string
+          - "null"
+        title: Ingress refers to the name of an `Ingress` resource in the same namespace as the `Rollout`
+      servicePort:
+        type:
+          - integer
+          - "null"
+        format: int32
+        title: ServicePort refers to the port that the Ingress action should route traffic to
+      rootService:
+        type:
+          - string
+          - "null"
+        title: RootService references the service in the ingress to the controller should add the action to
+      annotationPrefix:
+        type:
+          - string
+          - "null"
+        title: |-
+          AnnotationPrefix has to match the configured annotation prefix on the alb ingress controller
+          +optional
+      stickinessConfig:
+        type:
+          - object
+          - "null"
+        properties:
+          enabled:
+            type:
+              - boolean
+              - "null"
+          durationSeconds:
+            type:
+              - string
+              - "null"
+            format: int64
+      ingresses:
+        type:
+          - array
+          - "null"
+        items:
+          type:
+            - string
+            - "null"
+        title: |-
+          Ingresses refers to the name of an `Ingress` resource in the same namespace as the `Rollout` in a multi ingress scenario
+          +optional
+    title: ALBTrafficRouting configuration for ALB ingress controller to control traffic routing
+  smi:
+    type:
+      - object
+      - "null"
+    properties:
+      rootService:
+        type:
+          - string
+          - "null"
+        title: |-
+          RootService holds the name of that clients use to communicate.
+          +optional
+      trafficSplitName:
+        type:
+          - string
+          - "null"
+        title: |-
+          TrafficSplitName holds the name of the TrafficSplit.
+          +optional
+    title: SMITrafficRouting configuration for TrafficSplit Custom Resource to control traffic routing
+  ambassador:
+    type:
+      - object
+      - "null"
+    properties:
+      mappings:
+        type:
+          - array
+          - "null"
+        items:
+          type:
+            - string
+            - "null"
+        title: |-
+          Mappings refer to the name of the Ambassador Mappings used to route traffic to the
+          service
+    title: |-
+      AmbassadorTrafficRouting defines the configuration required to use Ambassador as traffic
+      router
+  appMesh:
+    type:
+      - object
+      - "null"
+    properties:
+      virtualService:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+            title: Name is the name of virtual service
+          routes:
+            type:
+              - array
+              - "null"
+            items:
+              type:
+                - string
+                - "null"
+            description: Routes is list of HTTP routes within virtual router associated with virtual service to edit. If omitted, virtual service must have a single route of this type.
+        title: AppMeshVirtualService holds information on the virtual service the rollout needs to modify
+      virtualNodeGroup:
+        type:
+          - object
+          - "null"
+        properties:
+          canaryVirtualNodeRef:
+            type:
+              - object
+              - "null"
+            properties:
+              name:
+                type:
+                  - string
+                  - "null"
+                title: Name is the name of VirtualNode CR
+            title: AppMeshVirtualNodeReference holds a reference to VirtualNode.appmesh.k8s.aws
+          stableVirtualNodeRef:
+            type:
+              - object
+              - "null"
+            properties:
+              name:
+                type:
+                  - string
+                  - "null"
+                title: Name is the name of VirtualNode CR
+            title: AppMeshVirtualNodeReference holds a reference to VirtualNode.appmesh.k8s.aws
+        title: AppMeshVirtualNodeGroup holds information about targets used for routing traffic to a virtual service
+    title: AppMeshTrafficRouting configuration for AWS AppMesh service mesh to enable fine grain configuration
+  traefik:
+    type:
+      - object
+      - "null"
+    properties:
+      weightedTraefikServiceName:
+        type:
+          - string
+          - "null"
+        title: TraefikServiceName refer to the name of the Traefik service used to route traffic to the service
+    title: TraefikTrafficRouting defines the configuration required to use Traefik as traffic router
+  managedRoutes:
+    type:
+      - array
+      - "null"
+    items:
+      type:
+        - object
+        - "null"
+      properties:
+        name:
+          type:
+            - string
+            - "null"
+    description: |-
+      ManagedRoutes A list of HTTP routes that Argo Rollouts manages, the order of this array also becomes the precedence in the upstream
+      traffic router.
+  apisix:
+    type:
+      - object
+      - "null"
+    properties:
+      route:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+            title: Name refer to the name of the APISIX Route used to route traffic to the service
+          rules:
+            type:
+              - array
+              - "null"
+            items:
+              type:
+                - string
+                - "null"
+            title: RuleRef a list of the APISIX Route HTTP Rules used to route traffic to the service
+        title: ApisixRoute holds information on the APISIX Route the rollout needs to modify
+    title: ApisixTrafficRouting defines the configuration required to use APISIX as traffic router
+  plugins:
+    type:
+      - object
+      - "null"
+    additionalProperties:
+      type:
+        - string
+        - "null"
+      format: byte
+    title: |-
+      +kubebuilder:validation:Schemaless
+      +kubebuilder:pruning:PreserveUnknownFields
+      +kubebuilder:validation:Type=object
+      Plugins holds specific configuration that traffic router plugins can use for routing traffic
+  maxTrafficWeight:
+    type:
+      - integer
+      - "null"
+    format: int32
+    title: MaxTrafficWeight The total weight of traffic. If unspecified, it defaults to 100
+title: RolloutTrafficRouting hosts all the different configuration for supported service meshes to enable more fine-grained traffic routing
+$schema: http://json-schema.org/schema#

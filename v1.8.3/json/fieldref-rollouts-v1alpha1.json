@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "fieldPath": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Required: Path of the field to select in the specified API version"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

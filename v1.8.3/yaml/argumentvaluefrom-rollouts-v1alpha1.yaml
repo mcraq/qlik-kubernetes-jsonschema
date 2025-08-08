@@ -1,0 +1,19 @@
+type: object
+properties:
+  podTemplateHashValue:
+    type:
+      - string
+      - "null"
+    title: PodTemplateHashValue gets the value from one of the children ReplicaSet's Pod Template Hash
+  fieldRef:
+    type:
+      - object
+      - "null"
+    properties:
+      fieldPath:
+        type:
+          - string
+          - "null"
+        title: 'Required: Path of the field to select in the specified API version'
+title: ArgumentValueFrom defines references to fields within resources to grab for the value (i.e. Pod Template Hash)
+$schema: http://json-schema.org/schema#

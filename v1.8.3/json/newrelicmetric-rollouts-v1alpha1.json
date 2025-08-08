@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "profile": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Profile is the name of the secret holding NR account configuration"
+    },
+    "query": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Query is a raw newrelic NRQL query to perform"
+    },
+    "timeout": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "int64",
+      "title": "Timeout represents the duration limit in seconds that will apply to the NRQL query\n+optional"
+    }
+  },
+  "title": "NewRelicMetric defines the newrelic query to perform canary analysis",
+  "$schema": "http://json-schema.org/schema#"
+}

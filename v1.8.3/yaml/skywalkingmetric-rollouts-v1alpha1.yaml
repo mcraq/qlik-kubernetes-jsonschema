@@ -1,0 +1,15 @@
+type: object
+properties:
+  address:
+    type:
+      - string
+      - "null"
+  query:
+    type:
+      - string
+      - "null"
+  interval:
+    type:
+      - string
+      - "null"
+$schema: http://json-schema.org/schema#

@@ -1,0 +1,133 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Name this is the name of the route to use for the mirroring of traffic this also needs\nto be included in the `spec.strategy.canary.trafficRouting.managedRoutes` field"
+    },
+    "match": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "method": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "exact": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Exact The string must match exactly"
+              },
+              "prefix": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Prefix The string will be prefixed matched"
+              },
+              "regex": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Regex The string will be regular expression matched"
+              }
+            },
+            "title": "StringMatch Used to define what type of matching we will use exact, prefix, or regular expression"
+          },
+          "path": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "exact": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Exact The string must match exactly"
+              },
+              "prefix": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Prefix The string will be prefixed matched"
+              },
+              "regex": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Regex The string will be regular expression matched"
+              }
+            },
+            "title": "StringMatch Used to define what type of matching we will use exact, prefix, or regular expression"
+          },
+          "headers": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "exact": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "title": "Exact The string must match exactly"
+                },
+                "prefix": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "title": "Prefix The string will be prefixed matched"
+                },
+                "regex": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "title": "Regex The string will be regular expression matched"
+                }
+              },
+              "title": "StringMatch Used to define what type of matching we will use exact, prefix, or regular expression"
+            },
+            "title": "Headers What request with matching headers should be mirrored\n+optional"
+          }
+        }
+      },
+      "title": "Match Contains a list of rules that if mated will mirror the traffic to the services\n+optional"
+    },
+    "percentage": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32",
+      "title": "Services The list of services to mirror the traffic to if the method, path, headers match\nService string `json:\"service\" protobuf:\"bytes,3,opt,name=service\"`\nPercentage What percent of the traffic that matched the rules should be mirrored"
+    }
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

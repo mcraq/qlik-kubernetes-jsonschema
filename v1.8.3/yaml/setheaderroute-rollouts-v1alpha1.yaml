@@ -1,0 +1,46 @@
+type: object
+properties:
+  name:
+    type:
+      - string
+      - "null"
+    title: |-
+      Name this is the name of the route to use for the mirroring of traffic this also needs
+      to be included in the `spec.strategy.canary.trafficRouting.managedRoutes` field
+  match:
+    type:
+      - array
+      - "null"
+    items:
+      type:
+        - object
+        - "null"
+      properties:
+        headerName:
+          type:
+            - string
+            - "null"
+          title: HeaderName the name of the request header
+        headerValue:
+          type:
+            - object
+            - "null"
+          properties:
+            exact:
+              type:
+                - string
+                - "null"
+              title: Exact The string must match exactly
+            prefix:
+              type:
+                - string
+                - "null"
+              title: Prefix The string will be prefixed matched
+            regex:
+              type:
+                - string
+                - "null"
+              title: Regex The string will be regular expression matched
+          title: StringMatch Used to define what type of matching we will use exact, prefix, or regular expression
+title: SetHeaderRoute defines the route with specified header name to send 100% of traffic to the canary service
+$schema: http://json-schema.org/schema#

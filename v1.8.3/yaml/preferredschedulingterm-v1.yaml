@@ -1,0 +1,106 @@
+type: object
+properties:
+  weight:
+    type:
+      - integer
+      - "null"
+    format: int32
+    description: Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+  preference:
+    type:
+      - object
+      - "null"
+    properties:
+      matchExpressions:
+        type:
+          - array
+          - "null"
+        items:
+          type:
+            - object
+            - "null"
+          properties:
+            key:
+              type:
+                - string
+                - "null"
+              description: The label key that the selector applies to.
+            operator:
+              type:
+                - string
+                - "null"
+              description: |-
+                Represents a key's relationship to a set of values.
+                Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+            values:
+              type:
+                - array
+                - "null"
+              items:
+                type:
+                  - string
+                  - "null"
+              title: |-
+                An array of string values. If the operator is In or NotIn,
+                the values array must be non-empty. If the operator is Exists or DoesNotExist,
+                the values array must be empty. If the operator is Gt or Lt, the values
+                array must have a single element, which will be interpreted as an integer.
+                This array is replaced during a strategic merge patch.
+                +optional
+          description: |-
+            A node selector requirement is a selector that contains values, a key, and an operator
+            that relates the key and values.
+        title: |-
+          A list of node selector requirements by node's labels.
+          +optional
+      matchFields:
+        type:
+          - array
+          - "null"
+        items:
+          type:
+            - object
+            - "null"
+          properties:
+            key:
+              type:
+                - string
+                - "null"
+              description: The label key that the selector applies to.
+            operator:
+              type:
+                - string
+                - "null"
+              description: |-
+                Represents a key's relationship to a set of values.
+                Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+            values:
+              type:
+                - array
+                - "null"
+              items:
+                type:
+                  - string
+                  - "null"
+              title: |-
+                An array of string values. If the operator is In or NotIn,
+                the values array must be non-empty. If the operator is Exists or DoesNotExist,
+                the values array must be empty. If the operator is Gt or Lt, the values
+                array must have a single element, which will be interpreted as an integer.
+                This array is replaced during a strategic merge patch.
+                +optional
+          description: |-
+            A node selector requirement is a selector that contains values, a key, and an operator
+            that relates the key and values.
+        title: |-
+          A list of node selector requirements by node's fields.
+          +optional
+    title: |-
+      A null or empty node selector term matches no objects. The requirements of
+      them are ANDed.
+      The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.
+      +structType=atomic
+description: |-
+  An empty preferred scheduling term matches all objects with implicit weight 0
+  (i.e. it's a no-op). A null preferred scheduling term matches no objects (i.e. is also a no-op).
+$schema: http://json-schema.org/schema#

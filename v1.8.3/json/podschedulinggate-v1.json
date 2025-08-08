@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Name of the scheduling gate.\nEach scheduling gate must have a unique name field."
+    }
+  },
+  "description": "PodSchedulingGate is associated to a Pod to guard its scheduling.",
+  "$schema": "http://json-schema.org/schema#"
+}

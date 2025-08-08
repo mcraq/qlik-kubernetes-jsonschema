@@ -1,0 +1,29 @@
+type: object
+properties:
+  tokenUrl:
+    type:
+      - string
+      - "null"
+    title: OAuth2 provider token URL
+  clientId:
+    type:
+      - string
+      - "null"
+    title: OAuth2 client ID
+  clientSecret:
+    type:
+      - string
+      - "null"
+    title: OAuth2 client secret
+  scopes:
+    type:
+      - array
+      - "null"
+    items:
+      type:
+        - string
+        - "null"
+    title: |-
+      OAuth2 scopes
+      +optional
+$schema: http://json-schema.org/schema#

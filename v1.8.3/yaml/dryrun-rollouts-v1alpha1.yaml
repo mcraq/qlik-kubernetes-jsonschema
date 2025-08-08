@@ -1,0 +1,11 @@
+type: object
+properties:
+  metricName:
+    type:
+      - string
+      - "null"
+    description: |-
+      Name of the metric which needs to be evaluated in the Dry-Run mode. Wildcard '*' is supported and denotes all
+      the available metrics.
+description: DryRun defines the settings for running the analysis in Dry-Run mode.
+$schema: http://json-schema.org/schema#

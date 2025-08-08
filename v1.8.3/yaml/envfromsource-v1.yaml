@@ -1,0 +1,83 @@
+type: object
+properties:
+  prefix:
+    type:
+      - string
+      - "null"
+    title: |-
+      An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
+      +optional
+  configMapRef:
+    type:
+      - object
+      - "null"
+    properties:
+      localObjectReference:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+            title: |-
+              Name of the referent.
+              More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+              TODO: Add other useful fields. apiVersion, kind, uid?
+              +optional
+        title: |-
+          LocalObjectReference contains enough information to let you locate the
+          referenced object inside the same namespace.
+          +structType=atomic
+      optional:
+        type:
+          - boolean
+          - "null"
+        title: |-
+          Specify whether the ConfigMap must be defined
+          +optional
+    description: |-
+      ConfigMapEnvSource selects a ConfigMap to populate the environment
+      variables with.
+
+      The contents of the target ConfigMap's Data field will represent the
+      key-value pairs as environment variables.
+  secretRef:
+    type:
+      - object
+      - "null"
+    properties:
+      localObjectReference:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+            title: |-
+              Name of the referent.
+              More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+              TODO: Add other useful fields. apiVersion, kind, uid?
+              +optional
+        title: |-
+          LocalObjectReference contains enough information to let you locate the
+          referenced object inside the same namespace.
+          +structType=atomic
+      optional:
+        type:
+          - boolean
+          - "null"
+        title: |-
+          Specify whether the Secret must be defined
+          +optional
+    description: |-
+      SecretEnvSource selects a Secret to populate the environment
+      variables with.
+
+      The contents of the target Secret's Data field will represent the
+      key-value pairs as environment variables.
+title: EnvFromSource represents the source of a set of ConfigMaps
+$schema: http://json-schema.org/schema#

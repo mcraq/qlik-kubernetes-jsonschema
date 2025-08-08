@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "mappings": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "title": "Mappings refer to the name of the Ambassador Mappings used to route traffic to the\nservice"
+    }
+  },
+  "title": "AmbassadorTrafficRouting defines the configuration required to use Ambassador as traffic\nrouter",
+  "$schema": "http://json-schema.org/schema#"
+}

@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "properties": {
+    "targetWWNs": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "title": "targetWWNs is Optional: FC target worldwide names (WWNs)\n+optional"
+    },
+    "lun": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32",
+      "title": "lun is Optional: FC target lun number\n+optional"
+    },
+    "fsType": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "fsType is the filesystem type to mount.\nMust be a filesystem type supported by the host operating system.\nEx. \"ext4\", \"xfs\", \"ntfs\". Implicitly inferred to be \"ext4\" if unspecified.\nTODO: how do we prevent errors in the filesystem from compromising the machine\n+optional"
+    },
+    "readOnly": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "title": "readOnly is Optional: Defaults to false (read/write). ReadOnly here will force\nthe ReadOnly setting in VolumeMounts.\n+optional"
+    },
+    "wwids": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "title": "wwids Optional: FC volume world wide identifiers (wwids)\nEither wwids or combination of targetWWNs and lun must be set, but not both simultaneously.\n+optional"
+    }
+  },
+  "description": "Represents a Fibre Channel volume.\nFibre Channel volumes can only be mounted as read/write once.\nFibre Channel volumes support ownership management and SELinux relabeling.",
+  "$schema": "http://json-schema.org/schema#"
+}

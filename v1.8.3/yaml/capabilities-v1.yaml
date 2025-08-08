@@ -1,0 +1,26 @@
+type: object
+properties:
+  add:
+    type:
+      - array
+      - "null"
+    items:
+      type:
+        - string
+        - "null"
+    title: |-
+      Added capabilities
+      +optional
+  drop:
+    type:
+      - array
+      - "null"
+    items:
+      type:
+        - string
+        - "null"
+    title: |-
+      Removed capabilities
+      +optional
+description: Adds and removes POSIX capabilities from running containers.
+$schema: http://json-schema.org/schema#

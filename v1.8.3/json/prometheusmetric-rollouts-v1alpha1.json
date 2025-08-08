@@ -1,0 +1,173 @@
+{
+  "type": "object",
+  "properties": {
+    "address": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Address is the HTTP address and port of the prometheus server"
+    },
+    "query": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Query is a raw prometheus query to perform"
+    },
+    "authentication": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "sigv4": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "address": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Region is the AWS Region to sign the SigV4 Request"
+            },
+            "profile": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Profile is the Credential Profile used to sign the SigV4 Request"
+            },
+            "roleArn": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "RoleARN is the IAM role used to sign the SIgV4 Request"
+            }
+          }
+        },
+        "oauth2": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "tokenUrl": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "OAuth2 provider token URL"
+            },
+            "clientId": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "OAuth2 client ID"
+            },
+            "clientSecret": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "OAuth2 client secret"
+            },
+            "scopes": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "title": "OAuth2 scopes\n+optional"
+            }
+          }
+        }
+      },
+      "title": "Authentication method"
+    },
+    "timeout": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "int64",
+      "title": "Timeout represents the duration within which a prometheus query should complete. It is expressed in seconds.\n+optional"
+    },
+    "insecure": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "title": "Insecure skips host TLS verification"
+    },
+    "headers": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "key": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "title": "Headers are optional HTTP headers to use in the request\n+optional\n+patchMergeKey=key\n+patchStrategy=merge"
+    },
+    "rangeQuery": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "start": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The start time to query in expr format e.g. now(), now() - duration(\"1h\"), now() - duration(\"{{args.lookback_duration}}\")"
+        },
+        "end": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "The end time to query in expr format e.g. now(), now() - duration(\"1h\"), now() - duration(\"{{args.lookback_duration}}\")"
+        },
+        "step": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The maximum time between two slices from the start to end (e.g. 30s, 5m, 1h)."
+        }
+      },
+      "title": "Arguments to perform a prometheus range query"
+    }
+  },
+  "title": "PrometheusMetric defines the prometheus query to perform canary analysis",
+  "$schema": "http://json-schema.org/schema#"
+}

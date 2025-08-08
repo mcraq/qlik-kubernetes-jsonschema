@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "apiGroup": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "APIGroup is the group for the resource being referenced.\nIf APIGroup is not specified, the specified Kind must be in the core API group.\nFor any other third-party types, APIGroup is required.\n+optional"
+    },
+    "kind": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Kind is the type of resource being referenced"
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Name is the name of resource being referenced"
+    }
+  },
+  "title": "TypedLocalObjectReference contains enough information to let you locate the\ntyped referenced object inside the same namespace.\n+structType=atomic",
+  "$schema": "http://json-schema.org/schema#"
+}

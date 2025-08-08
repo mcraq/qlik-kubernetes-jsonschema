@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "profile": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Profile is the name of the secret holding InfluxDB account configuration"
+    },
+    "query": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Query is a raw InfluxDB flux query to perform"
+    }
+  },
+  "title": "InfluxdbMetric defines the InfluxDB Flux query to perform canary analysis",
+  "$schema": "http://json-schema.org/schema#"
+}

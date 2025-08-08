@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Add other useful fields. apiVersion, kind, uid?\n+optional"
+    }
+  },
+  "title": "LocalObjectReference contains enough information to let you locate the\nreferenced object inside the same namespace.\n+structType=atomic",
+  "$schema": "http://json-schema.org/schema#"
+}

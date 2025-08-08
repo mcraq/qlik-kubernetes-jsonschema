@@ -1,0 +1,32 @@
+type: object
+properties:
+  user:
+    type:
+      - string
+      - "null"
+    title: |-
+      User is a SELinux user label that applies to the container.
+      +optional
+  role:
+    type:
+      - string
+      - "null"
+    title: |-
+      Role is a SELinux role label that applies to the container.
+      +optional
+  type:
+    type:
+      - string
+      - "null"
+    title: |-
+      Type is a SELinux type label that applies to the container.
+      +optional
+  level:
+    type:
+      - string
+      - "null"
+    title: |-
+      Level is SELinux level label that applies to the container.
+      +optional
+title: SELinuxOptions are the labels to be applied to the container
+$schema: http://json-schema.org/schema#

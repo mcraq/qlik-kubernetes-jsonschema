@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "repository": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "repository is the URL"
+    },
+    "revision": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "revision is the commit hash for the specified revision.\n+optional"
+    },
+    "directory": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "directory is the target directory name.\nMust not contain or start with '..'.  If '.' is supplied, the volume directory will be the\ngit repository.  Otherwise, if specified, the volume will contain the git repository in\nthe subdirectory with the given name.\n+optional"
+    }
+  },
+  "description": "Represents a volume that is populated with the contents of a git repository.\nGit repo volumes do not support ownership management.\nGit repo volumes support SELinux relabeling.\n\nDEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an\nEmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir\ninto the Pod's container.",
+  "$schema": "http://json-schema.org/schema#"
+}

@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "properties": {
+    "labels": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "title": "Labels Additional labels to add to the AnalysisRun\n+optional"
+    },
+    "annotations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "title": "Annotations additional annotations to add to the AnalysisRun\n+optional"
+    }
+  },
+  "title": "AnalysisRunMetadata extra labels to add to the AnalysisRun",
+  "$schema": "http://json-schema.org/schema#"
+}

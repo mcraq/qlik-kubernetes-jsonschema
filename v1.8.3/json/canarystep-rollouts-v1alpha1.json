@@ -1,0 +1,838 @@
+{
+  "type": "object",
+  "properties": {
+    "setWeight": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32",
+      "title": "SetWeight sets what percentage of the newRS should receive"
+    },
+    "pause": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "duration": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "int64"
+            },
+            "intVal": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int32"
+            },
+            "strVal": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "description": "+protobuf=true\n+protobuf.options.(gogoproto.goproto_stringer)=false\n+k8s:openapi-gen=true",
+          "title": "IntOrString is a type that can hold an int32 or a string.  When used in\nJSON or YAML marshalling and unmarshalling, it produces or consumes the\ninner type.  This allows you to have, for example, a JSON field that can\naccept a name or number.\nTODO: Rename to Int32OrString"
+        }
+      },
+      "title": "RolloutPause defines a pause stage for a rollout"
+    },
+    "experiment": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "templates": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Name description of template that passed to the template"
+              },
+              "specRef": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "SpecRef indicates where the rollout should get the RS template from"
+              },
+              "replicas": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int32",
+                "title": "Replicas replica count for the template\n+optional"
+              },
+              "metadata": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "labels": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "title": "Labels Additional labels to add to the experiment\n+optional"
+                  },
+                  "annotations": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "title": "Annotations additional annotations to add to the experiment\n+optional"
+                  }
+                },
+                "title": "PodTemplateMetadata extra labels to add to the template"
+              },
+              "selector": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "matchLabels": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "title": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.\n+optional"
+                  },
+                  "matchExpressions": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "key": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "key is the label key that the selector applies to."
+                        },
+                        "operator": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist."
+                        },
+                        "values": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "title": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.\n+optional"
+                        }
+                      },
+                      "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values."
+                    },
+                    "title": "matchExpressions is a list of label selector requirements. The requirements are ANDed.\n+optional"
+                  }
+                },
+                "title": "A label selector is a label query over a set of resources. The result of matchLabels and\nmatchExpressions are ANDed. An empty label selector matches all objects. A null\nlabel selector matches no objects.\n+structType=atomic"
+              },
+              "weight": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int32",
+                "title": "Weight sets the percentage of traffic the template's replicas should receive"
+              },
+              "service": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Name of the service generated by the experiment"
+                  }
+                }
+              }
+            },
+            "title": "RolloutExperimentTemplate defines the template used to create experiments for the Rollout's experiment canary step"
+          },
+          "title": "Templates what templates that should be added to the experiment. Should be non-nil\n+patchMergeKey=name\n+patchStrategy=merge"
+        },
+        "duration": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Duration is a duration string (e.g. 30s, 5m, 1h) that the experiment should run for\n+optional"
+        },
+        "analyses": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Name is a name for this analysis template invocation"
+              },
+              "templateName": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "TemplateName reference of the AnalysisTemplate name used by the Experiment to create the run"
+              },
+              "clusterScope": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "title": "Whether to look for the templateName at cluster scope or namespace scope\n+optional"
+              },
+              "args": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "title": "Name argument name"
+                    },
+                    "value": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "title": "Value a hardcoded value for the argument. This field is a one of field with valueFrom"
+                    },
+                    "valueFrom": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "podTemplateHashValue": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "title": "PodTemplateHashValue gets the value from one of the children ReplicaSet's Pod Template Hash"
+                        },
+                        "fieldRef": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "fieldPath": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "title": "Required: Path of the field to select in the specified API version"
+                            }
+                          }
+                        }
+                      },
+                      "title": "ArgumentValueFrom defines references to fields within resources to grab for the value (i.e. Pod Template Hash)"
+                    }
+                  },
+                  "title": "AnalysisRunArgument argument to add to analysisRun"
+                },
+                "title": "Args the arguments that will be added to the AnalysisRuns\n+patchMergeKey=name\n+patchStrategy=merge"
+              },
+              "requiredForCompletion": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "title": "RequiredForCompletion blocks the Experiment from completing until the analysis has completed"
+              }
+            }
+          },
+          "title": "Analyses reference which analysis templates to run with the experiment\n+patchMergeKey=name\n+patchStrategy=merge"
+        },
+        "dryRun": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "metricName": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Name of the metric which needs to be evaluated in the Dry-Run mode. Wildcard '*' is supported and denotes all\nthe available metrics."
+              }
+            },
+            "description": "DryRun defines the settings for running the analysis in Dry-Run mode."
+          },
+          "title": "DryRun object contains the settings for running the analysis in Dry-Run mode\n+patchMergeKey=metricName\n+patchStrategy=merge\n+optional"
+        },
+        "analysisRunMetadata": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "labels": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "title": "Labels Additional labels to add to the AnalysisRun\n+optional"
+            },
+            "annotations": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "title": "Annotations additional annotations to add to the AnalysisRun\n+optional"
+            }
+          },
+          "title": "AnalysisRunMetadata extra labels to add to the AnalysisRun"
+        }
+      },
+      "title": "RolloutExperimentStep defines a template that is used to create a experiment for a step"
+    },
+    "analysis": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "templates": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "templateName": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "TemplateName name of template to use in AnalysisRun\n+optional"
+              },
+              "clusterScope": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "title": "Whether to look for the templateName at cluster scope or namespace scope\n+optional"
+              }
+            }
+          },
+          "title": "Templates reference to a list of analysis templates to combine for an AnalysisRun\n+patchMergeKey=templateName\n+patchStrategy=merge"
+        },
+        "args": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Name argument name"
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Value a hardcoded value for the argument. This field is a one of field with valueFrom"
+              },
+              "valueFrom": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "podTemplateHashValue": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "PodTemplateHashValue gets the value from one of the children ReplicaSet's Pod Template Hash"
+                  },
+                  "fieldRef": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "fieldPath": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Required: Path of the field to select in the specified API version"
+                      }
+                    }
+                  }
+                },
+                "title": "ArgumentValueFrom defines references to fields within resources to grab for the value (i.e. Pod Template Hash)"
+              }
+            },
+            "title": "AnalysisRunArgument argument to add to analysisRun"
+          },
+          "title": "Args the arguments that will be added to the AnalysisRuns\n+patchMergeKey=name\n+patchStrategy=merge"
+        },
+        "dryRun": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "metricName": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Name of the metric which needs to be evaluated in the Dry-Run mode. Wildcard '*' is supported and denotes all\nthe available metrics."
+              }
+            },
+            "description": "DryRun defines the settings for running the analysis in Dry-Run mode."
+          },
+          "title": "DryRun object contains the settings for running the analysis in Dry-Run mode\n+patchMergeKey=metricName\n+patchStrategy=merge\n+optional"
+        },
+        "measurementRetention": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "metricName": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "MetricName is the name of the metric on which this retention policy should be applied."
+              },
+              "limit": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int32",
+                "description": "Limit is the maximum number of measurements to be retained for this given metric."
+              }
+            },
+            "description": "MeasurementRetention defines the settings for retaining the number of measurements during the analysis."
+          },
+          "title": "MeasurementRetention object contains the settings for retaining the number of measurements during the analysis\n+patchMergeKey=metricName\n+patchStrategy=merge\n+optional"
+        },
+        "analysisRunMetadata": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "labels": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "title": "Labels Additional labels to add to the AnalysisRun\n+optional"
+            },
+            "annotations": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "title": "Annotations additional annotations to add to the AnalysisRun\n+optional"
+            }
+          },
+          "title": "AnalysisRunMetadata extra labels to add to the AnalysisRun"
+        }
+      },
+      "title": "RolloutAnalysis defines a template that is used to create a analysisRun"
+    },
+    "setCanaryScale": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "weight": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32",
+          "title": "Weight sets the percentage of replicas the newRS should have\n+optional"
+        },
+        "replicas": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32",
+          "title": "Replicas sets the number of replicas the newRS should have\n+optional"
+        },
+        "matchTrafficWeight": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "MatchTrafficWeight cancels out previously set Replicas or Weight, effectively activating SetWeight\n+optional"
+        }
+      },
+      "title": "SetCanaryScale defines how to scale the newRS without changing traffic weight"
+    },
+    "setHeaderRoute": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Name this is the name of the route to use for the mirroring of traffic this also needs\nto be included in the `spec.strategy.canary.trafficRouting.managedRoutes` field"
+        },
+        "match": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "headerName": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "HeaderName the name of the request header"
+              },
+              "headerValue": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "exact": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Exact The string must match exactly"
+                  },
+                  "prefix": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Prefix The string will be prefixed matched"
+                  },
+                  "regex": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Regex The string will be regular expression matched"
+                  }
+                },
+                "title": "StringMatch Used to define what type of matching we will use exact, prefix, or regular expression"
+              }
+            }
+          }
+        }
+      },
+      "title": "SetHeaderRoute defines the route with specified header name to send 100% of traffic to the canary service"
+    },
+    "setMirrorRoute": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Name this is the name of the route to use for the mirroring of traffic this also needs\nto be included in the `spec.strategy.canary.trafficRouting.managedRoutes` field"
+        },
+        "match": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "method": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "exact": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Exact The string must match exactly"
+                  },
+                  "prefix": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Prefix The string will be prefixed matched"
+                  },
+                  "regex": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Regex The string will be regular expression matched"
+                  }
+                },
+                "title": "StringMatch Used to define what type of matching we will use exact, prefix, or regular expression"
+              },
+              "path": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "exact": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Exact The string must match exactly"
+                  },
+                  "prefix": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Prefix The string will be prefixed matched"
+                  },
+                  "regex": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "Regex The string will be regular expression matched"
+                  }
+                },
+                "title": "StringMatch Used to define what type of matching we will use exact, prefix, or regular expression"
+              },
+              "headers": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "additionalProperties": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "exact": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "title": "Exact The string must match exactly"
+                    },
+                    "prefix": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "title": "Prefix The string will be prefixed matched"
+                    },
+                    "regex": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "title": "Regex The string will be regular expression matched"
+                    }
+                  },
+                  "title": "StringMatch Used to define what type of matching we will use exact, prefix, or regular expression"
+                },
+                "title": "Headers What request with matching headers should be mirrored\n+optional"
+              }
+            }
+          },
+          "title": "Match Contains a list of rules that if mated will mirror the traffic to the services\n+optional"
+        },
+        "percentage": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32",
+          "title": "Services The list of services to mirror the traffic to if the method, path, headers match\nService string `json:\"service\" protobuf:\"bytes,3,opt,name=service\"`\nPercentage What percent of the traffic that matched the rules should be mirrored"
+        }
+      }
+    },
+    "plugin": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Name of the hashicorp go-plugin step to query"
+        },
+        "config": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "byte",
+          "title": "+kubebuilder:validation:Schemaless\n+kubebuilder:pruning:PreserveUnknownFields\n+kubebuilder:validation:Type=object\nConfig is the configuration object for the specified plugin"
+        }
+      }
+    }
+  },
+  "description": "CanaryStep defines a step of a canary deployment.",
+  "$schema": "http://json-schema.org/schema#"
+}

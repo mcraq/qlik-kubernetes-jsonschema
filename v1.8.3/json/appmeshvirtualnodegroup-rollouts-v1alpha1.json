@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "canaryVirtualNodeRef": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Name is the name of VirtualNode CR"
+        }
+      },
+      "title": "AppMeshVirtualNodeReference holds a reference to VirtualNode.appmesh.k8s.aws"
+    },
+    "stableVirtualNodeRef": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Name is the name of VirtualNode CR"
+        }
+      },
+      "title": "AppMeshVirtualNodeReference holds a reference to VirtualNode.appmesh.k8s.aws"
+    }
+  },
+  "title": "AppMeshVirtualNodeGroup holds information about targets used for routing traffic to a virtual service",
+  "$schema": "http://json-schema.org/schema#"
+}

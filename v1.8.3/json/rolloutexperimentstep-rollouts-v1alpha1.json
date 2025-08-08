@@ -1,0 +1,337 @@
+{
+  "type": "object",
+  "properties": {
+    "templates": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Name description of template that passed to the template"
+          },
+          "specRef": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "SpecRef indicates where the rollout should get the RS template from"
+          },
+          "replicas": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "title": "Replicas replica count for the template\n+optional"
+          },
+          "metadata": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "labels": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "title": "Labels Additional labels to add to the experiment\n+optional"
+              },
+              "annotations": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "title": "Annotations additional annotations to add to the experiment\n+optional"
+              }
+            },
+            "title": "PodTemplateMetadata extra labels to add to the template"
+          },
+          "selector": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "matchLabels": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "title": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels\nmap is equivalent to an element of matchExpressions, whose key field is \"key\", the\noperator is \"In\", and the values array contains only \"value\". The requirements are ANDed.\n+optional"
+              },
+              "matchExpressions": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "key": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "key is the label key that the selector applies to."
+                    },
+                    "operator": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "operator represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists and DoesNotExist."
+                    },
+                    "values": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "title": "values is an array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. This array is replaced during a strategic\nmerge patch.\n+optional"
+                    }
+                  },
+                  "description": "A label selector requirement is a selector that contains values, a key, and an operator that\nrelates the key and values."
+                },
+                "title": "matchExpressions is a list of label selector requirements. The requirements are ANDed.\n+optional"
+              }
+            },
+            "title": "A label selector is a label query over a set of resources. The result of matchLabels and\nmatchExpressions are ANDed. An empty label selector matches all objects. A null\nlabel selector matches no objects.\n+structType=atomic"
+          },
+          "weight": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "title": "Weight sets the percentage of traffic the template's replicas should receive"
+          },
+          "service": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Name of the service generated by the experiment"
+              }
+            }
+          }
+        },
+        "title": "RolloutExperimentTemplate defines the template used to create experiments for the Rollout's experiment canary step"
+      },
+      "title": "Templates what templates that should be added to the experiment. Should be non-nil\n+patchMergeKey=name\n+patchStrategy=merge"
+    },
+    "duration": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Duration is a duration string (e.g. 30s, 5m, 1h) that the experiment should run for\n+optional"
+    },
+    "analyses": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "Name is a name for this analysis template invocation"
+          },
+          "templateName": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "TemplateName reference of the AnalysisTemplate name used by the Experiment to create the run"
+          },
+          "clusterScope": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "Whether to look for the templateName at cluster scope or namespace scope\n+optional"
+          },
+          "args": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "name": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "title": "Name argument name"
+                },
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "title": "Value a hardcoded value for the argument. This field is a one of field with valueFrom"
+                },
+                "valueFrom": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "podTemplateHashValue": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "title": "PodTemplateHashValue gets the value from one of the children ReplicaSet's Pod Template Hash"
+                    },
+                    "fieldRef": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "fieldPath": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "title": "Required: Path of the field to select in the specified API version"
+                        }
+                      }
+                    }
+                  },
+                  "title": "ArgumentValueFrom defines references to fields within resources to grab for the value (i.e. Pod Template Hash)"
+                }
+              },
+              "title": "AnalysisRunArgument argument to add to analysisRun"
+            },
+            "title": "Args the arguments that will be added to the AnalysisRuns\n+patchMergeKey=name\n+patchStrategy=merge"
+          },
+          "requiredForCompletion": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "title": "RequiredForCompletion blocks the Experiment from completing until the analysis has completed"
+          }
+        }
+      },
+      "title": "Analyses reference which analysis templates to run with the experiment\n+patchMergeKey=name\n+patchStrategy=merge"
+    },
+    "dryRun": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "metricName": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Name of the metric which needs to be evaluated in the Dry-Run mode. Wildcard '*' is supported and denotes all\nthe available metrics."
+          }
+        },
+        "description": "DryRun defines the settings for running the analysis in Dry-Run mode."
+      },
+      "title": "DryRun object contains the settings for running the analysis in Dry-Run mode\n+patchMergeKey=metricName\n+patchStrategy=merge\n+optional"
+    },
+    "analysisRunMetadata": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "labels": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "title": "Labels Additional labels to add to the AnalysisRun\n+optional"
+        },
+        "annotations": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "title": "Annotations additional annotations to add to the AnalysisRun\n+optional"
+        }
+      },
+      "title": "AnalysisRunMetadata extra labels to add to the AnalysisRun"
+    }
+  },
+  "title": "RolloutExperimentStep defines a template that is used to create a experiment for a step",
+  "$schema": "http://json-schema.org/schema#"
+}

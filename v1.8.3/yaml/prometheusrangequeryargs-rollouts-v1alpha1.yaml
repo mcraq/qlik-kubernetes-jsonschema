@@ -1,0 +1,19 @@
+type: object
+properties:
+  start:
+    type:
+      - string
+      - "null"
+    title: The start time to query in expr format e.g. now(), now() - duration("1h"), now() - duration("{{args.lookback_duration}}")
+  end:
+    type:
+      - string
+      - "null"
+    title: The end time to query in expr format e.g. now(), now() - duration("1h"), now() - duration("{{args.lookback_duration}}")
+  step:
+    type:
+      - string
+      - "null"
+    description: The maximum time between two slices from the start to end (e.g. 30s, 5m, 1h).
+title: Arguments to perform a prometheus range query
+$schema: http://json-schema.org/schema#

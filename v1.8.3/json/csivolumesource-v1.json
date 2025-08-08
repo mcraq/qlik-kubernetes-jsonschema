@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "driver": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "driver is the name of the CSI driver that handles this volume.\nConsult with your admin for the correct name as registered in the cluster."
+    },
+    "readOnly": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "title": "readOnly specifies a read-only configuration for the volume.\nDefaults to false (read/write).\n+optional"
+    },
+    "fsType": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "fsType to mount. Ex. \"ext4\", \"xfs\", \"ntfs\".\nIf not provided, the empty value is passed to the associated CSI driver\nwhich will determine the default filesystem to apply.\n+optional"
+    },
+    "volumeAttributes": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "title": "volumeAttributes stores driver-specific properties that are passed to the CSI\ndriver. Consult your driver's documentation for supported values.\n+optional"
+    },
+    "nodePublishSecretRef": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Add other useful fields. apiVersion, kind, uid?\n+optional"
+        }
+      },
+      "title": "LocalObjectReference contains enough information to let you locate the\nreferenced object inside the same namespace.\n+structType=atomic"
+    }
+  },
+  "title": "Represents a source location of a volume to mount, managed by an external CSI driver",
+  "$schema": "http://json-schema.org/schema#"
+}

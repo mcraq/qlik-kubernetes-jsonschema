@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "ip": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "IP address of the host file entry."
+    },
+    "hostnames": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "description": "Hostnames for the above IP address."
+    }
+  },
+  "description": "HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the\npod's hosts file.",
+  "$schema": "http://json-schema.org/schema#"
+}

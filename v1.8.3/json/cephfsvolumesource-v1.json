@@ -1,0 +1,64 @@
+{
+  "type": "object",
+  "properties": {
+    "monitors": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "title": "monitors is Required: Monitors is a collection of Ceph monitors\nMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it"
+    },
+    "path": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /\n+optional"
+    },
+    "user": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "user is optional: User is the rados user name, default is admin\nMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it\n+optional"
+    },
+    "secretFile": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret\nMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it\n+optional"
+    },
+    "secretRef": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Add other useful fields. apiVersion, kind, uid?\n+optional"
+        }
+      },
+      "title": "LocalObjectReference contains enough information to let you locate the\nreferenced object inside the same namespace.\n+structType=atomic"
+    },
+    "readOnly": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "title": "readOnly is Optional: Defaults to false (read/write). ReadOnly here will force\nthe ReadOnly setting in VolumeMounts.\nMore info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it\n+optional"
+    }
+  },
+  "description": "Represents a Ceph Filesystem mount that lasts the lifetime of a pod\nCephfs volumes do not support ownership management or SELinux relabeling.",
+  "$schema": "http://json-schema.org/schema#"
+}

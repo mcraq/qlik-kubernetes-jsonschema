@@ -1,0 +1,19 @@
+type: object
+properties:
+  weight:
+    type:
+      - integer
+      - "null"
+    format: int32
+    title: Weight is an percentage of traffic being sent to this destination
+  serviceName:
+    type:
+      - string
+      - "null"
+    title: ServiceName is the Kubernetes service name traffic is being sent to
+  podTemplateHash:
+    type:
+      - string
+      - "null"
+    title: PodTemplateHash is the pod template hash label for this destination
+$schema: http://json-schema.org/schema#

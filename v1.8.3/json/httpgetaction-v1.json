@@ -1,0 +1,88 @@
+{
+  "type": "object",
+  "properties": {
+    "path": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Path to access on the HTTP server.\n+optional"
+    },
+    "port": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "int64"
+        },
+        "intVal": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "strVal": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "description": "+protobuf=true\n+protobuf.options.(gogoproto.goproto_stringer)=false\n+k8s:openapi-gen=true",
+      "title": "IntOrString is a type that can hold an int32 or a string.  When used in\nJSON or YAML marshalling and unmarshalling, it produces or consumes the\ninner type.  This allows you to have, for example, a JSON field that can\naccept a name or number.\nTODO: Rename to Int32OrString"
+    },
+    "host": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Host name to connect to, defaults to the pod IP. You probably want to set\n\"Host\" in httpHeaders instead.\n+optional"
+    },
+    "scheme": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Scheme to use for connecting to the host.\nDefaults to HTTP.\n+optional"
+    },
+    "httpHeaders": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The header field name.\nThis will be canonicalized upon output, so case-variant names will be understood as the same header."
+          },
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "title": "The header field value"
+          }
+        },
+        "title": "HTTPHeader describes a custom header to be used in HTTP probes"
+      },
+      "title": "Custom headers to set in the request. HTTP allows repeated headers.\n+optional"
+    }
+  },
+  "description": "HTTPGetAction describes an action based on HTTP Get requests.",
+  "$schema": "http://json-schema.org/schema#"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "rootService": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "RootService holds the name of that clients use to communicate.\n+optional"
+    },
+    "trafficSplitName": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "TrafficSplitName holds the name of the TrafficSplit.\n+optional"
+    }
+  },
+  "title": "SMITrafficRouting configuration for TrafficSplit Custom Resource to control traffic routing",
+  "$schema": "http://json-schema.org/schema#"
+}

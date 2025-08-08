@@ -1,0 +1,109 @@
+{
+  "type": "object",
+  "properties": {
+    "nodeSelectorTerms": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "matchExpressions": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "key": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "The label key that the selector applies to."
+                },
+                "operator": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "Represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt."
+                },
+                "values": {
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "title": "An array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. If the operator is Gt or Lt, the values\narray must have a single element, which will be interpreted as an integer.\nThis array is replaced during a strategic merge patch.\n+optional"
+                }
+              },
+              "description": "A node selector requirement is a selector that contains values, a key, and an operator\nthat relates the key and values."
+            },
+            "title": "A list of node selector requirements by node's labels.\n+optional"
+          },
+          "matchFields": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "key": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "The label key that the selector applies to."
+                },
+                "operator": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "Represents a key's relationship to a set of values.\nValid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt."
+                },
+                "values": {
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "title": "An array of string values. If the operator is In or NotIn,\nthe values array must be non-empty. If the operator is Exists or DoesNotExist,\nthe values array must be empty. If the operator is Gt or Lt, the values\narray must have a single element, which will be interpreted as an integer.\nThis array is replaced during a strategic merge patch.\n+optional"
+                }
+              },
+              "description": "A node selector requirement is a selector that contains values, a key, and an operator\nthat relates the key and values."
+            },
+            "title": "A list of node selector requirements by node's fields.\n+optional"
+          }
+        },
+        "title": "A null or empty node selector term matches no objects. The requirements of\nthem are ANDed.\nThe TopologySelectorTerm type implements a subset of the NodeSelectorTerm.\n+structType=atomic"
+      },
+      "description": "Required. A list of node selector terms. The terms are ORed."
+    }
+  },
+  "title": "A node selector represents the union of the results of one or more label queries\nover a set of nodes; that is, it represents the OR of the selectors represented\nby the node selector terms.\n+structType=atomic",
+  "$schema": "http://json-schema.org/schema#"
+}

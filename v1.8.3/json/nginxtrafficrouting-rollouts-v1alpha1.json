@@ -1,0 +1,60 @@
+{
+  "type": "object",
+  "properties": {
+    "annotationPrefix": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "AnnotationPrefix has to match the configured annotation prefix on the nginx ingress controller\n+optional"
+    },
+    "stableIngress": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "StableIngress refers to the name of an `Ingress` resource in the same namespace as the `Rollout`"
+    },
+    "additionalIngressAnnotations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "title": "+optional"
+    },
+    "stableIngresses": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "title": "StableIngresses refers to the names of `Ingress` resources in the same namespace as the `Rollout` in a multi ingress scenario\n+optional"
+    },
+    "canaryIngressAnnotations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "title": "+optional"
+    }
+  },
+  "title": "NginxTrafficRouting configuration for Nginx ingress controller to control traffic routing",
+  "$schema": "http://json-schema.org/schema#"
+}

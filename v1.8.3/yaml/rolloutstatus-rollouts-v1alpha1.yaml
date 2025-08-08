@@ -1,0 +1,842 @@
+type: object
+properties:
+  abort:
+    type:
+      - boolean
+      - "null"
+    title: Abort cancel the current rollout progression
+  pauseConditions:
+    type:
+      - array
+      - "null"
+    items:
+      type:
+        - object
+        - "null"
+      properties:
+        reason:
+          type:
+            - string
+            - "null"
+        startTime:
+          type:
+            - object
+            - "null"
+          properties:
+            seconds:
+              type:
+                - string
+                - "null"
+              format: int64
+              description: |-
+                Represents seconds of UTC time since Unix epoch
+                1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+                9999-12-31T23:59:59Z inclusive.
+            nanos:
+              type:
+                - integer
+                - "null"
+              format: int32
+              description: |-
+                Non-negative fractions of a second at nanosecond resolution. Negative
+                second values with fractions must still have non-negative nanos values
+                that count forward in time. Must be from 0 to 999,999,999
+                inclusive. This field may be limited in precision depending on context.
+          description: |-
+            Time is a wrapper around time.Time which supports correct
+            marshaling to YAML and JSON.  Wrappers are provided for many
+            of the factory methods that the time package offers.
+
+            +protobuf.options.marshal=false
+            +protobuf.as=Timestamp
+            +protobuf.options.(gogoproto.goproto_stringer)=false
+      title: PauseCondition the reason for a pause and when it started
+    title: |-
+      PauseConditions is a list of reasons why rollout became automatically paused (e.g.
+      CanaryPauseStep, BlueGreenPause, InconclusiveAnalysis). The items in this list are populated
+      by the controller but are cleared by the user (e.g. plugin, argo-cd resume action) when they
+      wish to unpause. If pause conditions is empty, but controllerPause is true, it indicates
+      the user manually unpaused the Rollout
+  controllerPause:
+    type:
+      - boolean
+      - "null"
+    description: |-
+      ControllerPause indicates the controller has paused the rollout. It is set to true when
+      the controller adds a pause condition. This field helps to discern the scenario where a
+      rollout was resumed after being paused by the controller (e.g. via the plugin). In that
+      situation, the pauseConditions would have been cleared , but controllerPause would still be
+      set to true.
+  abortedAt:
+    type:
+      - object
+      - "null"
+    properties:
+      seconds:
+        type:
+          - string
+          - "null"
+        format: int64
+        description: |-
+          Represents seconds of UTC time since Unix epoch
+          1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+          9999-12-31T23:59:59Z inclusive.
+      nanos:
+        type:
+          - integer
+          - "null"
+        format: int32
+        description: |-
+          Non-negative fractions of a second at nanosecond resolution. Negative
+          second values with fractions must still have non-negative nanos values
+          that count forward in time. Must be from 0 to 999,999,999
+          inclusive. This field may be limited in precision depending on context.
+    description: |-
+      Time is a wrapper around time.Time which supports correct
+      marshaling to YAML and JSON.  Wrappers are provided for many
+      of the factory methods that the time package offers.
+
+      +protobuf.options.marshal=false
+      +protobuf.as=Timestamp
+      +protobuf.options.(gogoproto.goproto_stringer)=false
+  currentPodHash:
+    type:
+      - string
+      - "null"
+    title: |-
+      CurrentPodHash the hash of the current pod template
+      +optional
+  currentStepHash:
+    type:
+      - string
+      - "null"
+    title: |-
+      CurrentStepHash the hash of the current list of steps for the current strategy. This is used to detect when the
+      list of current steps change
+      +optional
+  replicas:
+    type:
+      - integer
+      - "null"
+    format: int32
+    title: |-
+      Total number of non-terminated pods targeted by this rollout (their labels match the selector).
+      +optional
+  updatedReplicas:
+    type:
+      - integer
+      - "null"
+    format: int32
+    title: |-
+      Total number of non-terminated pods targeted by this rollout that have the desired template spec.
+      +optional
+  readyReplicas:
+    type:
+      - integer
+      - "null"
+    format: int32
+    title: |-
+      Total number of ready pods targeted by this rollout.
+      +optional
+  availableReplicas:
+    type:
+      - integer
+      - "null"
+    format: int32
+    title: |-
+      Total number of available pods (ready for at least minReadySeconds) targeted by this rollout.
+      +optional
+  currentStepIndex:
+    type:
+      - integer
+      - "null"
+    format: int32
+    title: |-
+      CurrentStepIndex defines the current step of the rollout is on. If the current step index is null, the
+      controller will execute the rollout.
+      +optional
+  collisionCount:
+    type:
+      - integer
+      - "null"
+    format: int32
+    title: |-
+      Count of hash collisions for the Rollout. The Rollout controller uses this
+      field as a collision avoidance mechanism when it needs to create the name for the
+      newest ReplicaSet.
+      +optional
+  observedGeneration:
+    type:
+      - string
+      - "null"
+    title: |-
+      The generation observed by the rollout controller from metadata.generation
+      +optional
+  conditions:
+    type:
+      - array
+      - "null"
+    items:
+      type:
+        - object
+        - "null"
+      properties:
+        type:
+          type:
+            - string
+            - "null"
+          description: Type of deployment condition.
+        status:
+          type:
+            - string
+            - "null"
+          description: Phase of the condition, one of True, False, Unknown.
+        lastUpdateTime:
+          type:
+            - object
+            - "null"
+          properties:
+            seconds:
+              type:
+                - string
+                - "null"
+              format: int64
+              description: |-
+                Represents seconds of UTC time since Unix epoch
+                1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+                9999-12-31T23:59:59Z inclusive.
+            nanos:
+              type:
+                - integer
+                - "null"
+              format: int32
+              description: |-
+                Non-negative fractions of a second at nanosecond resolution. Negative
+                second values with fractions must still have non-negative nanos values
+                that count forward in time. Must be from 0 to 999,999,999
+                inclusive. This field may be limited in precision depending on context.
+          description: |-
+            Time is a wrapper around time.Time which supports correct
+            marshaling to YAML and JSON.  Wrappers are provided for many
+            of the factory methods that the time package offers.
+
+            +protobuf.options.marshal=false
+            +protobuf.as=Timestamp
+            +protobuf.options.(gogoproto.goproto_stringer)=false
+        lastTransitionTime:
+          type:
+            - object
+            - "null"
+          properties:
+            seconds:
+              type:
+                - string
+                - "null"
+              format: int64
+              description: |-
+                Represents seconds of UTC time since Unix epoch
+                1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+                9999-12-31T23:59:59Z inclusive.
+            nanos:
+              type:
+                - integer
+                - "null"
+              format: int32
+              description: |-
+                Non-negative fractions of a second at nanosecond resolution. Negative
+                second values with fractions must still have non-negative nanos values
+                that count forward in time. Must be from 0 to 999,999,999
+                inclusive. This field may be limited in precision depending on context.
+          description: |-
+            Time is a wrapper around time.Time which supports correct
+            marshaling to YAML and JSON.  Wrappers are provided for many
+            of the factory methods that the time package offers.
+
+            +protobuf.options.marshal=false
+            +protobuf.as=Timestamp
+            +protobuf.options.(gogoproto.goproto_stringer)=false
+        reason:
+          type:
+            - string
+            - "null"
+          description: The reason for the condition's last transition.
+        message:
+          type:
+            - string
+            - "null"
+          description: A human readable message indicating details about the transition.
+      description: RolloutCondition describes the state of a rollout at a certain point.
+    title: |-
+      Conditions a list of conditions a rollout can have.
+      +optional
+  canary:
+    type:
+      - object
+      - "null"
+    properties:
+      currentStepAnalysisRunStatus:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+          status:
+            type:
+              - string
+              - "null"
+          message:
+            type:
+              - string
+              - "null"
+      currentBackgroundAnalysisRunStatus:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+          status:
+            type:
+              - string
+              - "null"
+          message:
+            type:
+              - string
+              - "null"
+      currentExperiment:
+        type:
+          - string
+          - "null"
+        title: CurrentExperiment indicates the running experiment
+      weights:
+        type:
+          - object
+          - "null"
+        properties:
+          canary:
+            type:
+              - object
+              - "null"
+            properties:
+              weight:
+                type:
+                  - integer
+                  - "null"
+                format: int32
+                title: Weight is an percentage of traffic being sent to this destination
+              serviceName:
+                type:
+                  - string
+                  - "null"
+                title: ServiceName is the Kubernetes service name traffic is being sent to
+              podTemplateHash:
+                type:
+                  - string
+                  - "null"
+                title: PodTemplateHash is the pod template hash label for this destination
+          stable:
+            type:
+              - object
+              - "null"
+            properties:
+              weight:
+                type:
+                  - integer
+                  - "null"
+                format: int32
+                title: Weight is an percentage of traffic being sent to this destination
+              serviceName:
+                type:
+                  - string
+                  - "null"
+                title: ServiceName is the Kubernetes service name traffic is being sent to
+              podTemplateHash:
+                type:
+                  - string
+                  - "null"
+                title: PodTemplateHash is the pod template hash label for this destination
+          additional:
+            type:
+              - array
+              - "null"
+            items:
+              type:
+                - object
+                - "null"
+              properties:
+                weight:
+                  type:
+                    - integer
+                    - "null"
+                  format: int32
+                  title: Weight is an percentage of traffic being sent to this destination
+                serviceName:
+                  type:
+                    - string
+                    - "null"
+                  title: ServiceName is the Kubernetes service name traffic is being sent to
+                podTemplateHash:
+                  type:
+                    - string
+                    - "null"
+                  title: PodTemplateHash is the pod template hash label for this destination
+            title: Additional holds the weights split to additional ReplicaSets such as experiment ReplicaSets
+          verified:
+            type:
+              - boolean
+              - "null"
+            title: |-
+              Verified is an optional indicator that the weight has been verified to have taken effect.
+              This is currently only applicable to ALB traffic router
+        title: TrafficWeights describes the current status of how traffic has been split
+      stablePingPong:
+        type:
+          - string
+          - "null"
+        title: StablePingPong For the ping-pong feature holds the current stable service, ping or pong
+      stepPluginStatuses:
+        type:
+          - array
+          - "null"
+        items:
+          type:
+            - object
+            - "null"
+          properties:
+            index:
+              type:
+                - integer
+                - "null"
+              format: int32
+              title: Index is the matching step index of the executed plugin
+            name:
+              type:
+                - string
+                - "null"
+              title: Name is the matching step name of the executed plugin
+            operation:
+              type:
+                - string
+                - "null"
+              title: Operation is the name of the operation that produced this status
+            phase:
+              type:
+                - string
+                - "null"
+              title: Phase is the resulting phase of the operation
+            message:
+              type:
+                - string
+                - "null"
+              title: Message provides details on why the plugin is in its current phase
+            startedAt:
+              type:
+                - object
+                - "null"
+              properties:
+                seconds:
+                  type:
+                    - string
+                    - "null"
+                  format: int64
+                  description: |-
+                    Represents seconds of UTC time since Unix epoch
+                    1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+                    9999-12-31T23:59:59Z inclusive.
+                nanos:
+                  type:
+                    - integer
+                    - "null"
+                  format: int32
+                  description: |-
+                    Non-negative fractions of a second at nanosecond resolution. Negative
+                    second values with fractions must still have non-negative nanos values
+                    that count forward in time. Must be from 0 to 999,999,999
+                    inclusive. This field may be limited in precision depending on context.
+              description: |-
+                Time is a wrapper around time.Time which supports correct
+                marshaling to YAML and JSON.  Wrappers are provided for many
+                of the factory methods that the time package offers.
+
+                +protobuf.options.marshal=false
+                +protobuf.as=Timestamp
+                +protobuf.options.(gogoproto.goproto_stringer)=false
+            updatedAt:
+              type:
+                - object
+                - "null"
+              properties:
+                seconds:
+                  type:
+                    - string
+                    - "null"
+                  format: int64
+                  description: |-
+                    Represents seconds of UTC time since Unix epoch
+                    1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+                    9999-12-31T23:59:59Z inclusive.
+                nanos:
+                  type:
+                    - integer
+                    - "null"
+                  format: int32
+                  description: |-
+                    Non-negative fractions of a second at nanosecond resolution. Negative
+                    second values with fractions must still have non-negative nanos values
+                    that count forward in time. Must be from 0 to 999,999,999
+                    inclusive. This field may be limited in precision depending on context.
+              description: |-
+                Time is a wrapper around time.Time which supports correct
+                marshaling to YAML and JSON.  Wrappers are provided for many
+                of the factory methods that the time package offers.
+
+                +protobuf.options.marshal=false
+                +protobuf.as=Timestamp
+                +protobuf.options.(gogoproto.goproto_stringer)=false
+            finishedAt:
+              type:
+                - object
+                - "null"
+              properties:
+                seconds:
+                  type:
+                    - string
+                    - "null"
+                  format: int64
+                  description: |-
+                    Represents seconds of UTC time since Unix epoch
+                    1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+                    9999-12-31T23:59:59Z inclusive.
+                nanos:
+                  type:
+                    - integer
+                    - "null"
+                  format: int32
+                  description: |-
+                    Non-negative fractions of a second at nanosecond resolution. Negative
+                    second values with fractions must still have non-negative nanos values
+                    that count forward in time. Must be from 0 to 999,999,999
+                    inclusive. This field may be limited in precision depending on context.
+              description: |-
+                Time is a wrapper around time.Time which supports correct
+                marshaling to YAML and JSON.  Wrappers are provided for many
+                of the factory methods that the time package offers.
+
+                +protobuf.options.marshal=false
+                +protobuf.as=Timestamp
+                +protobuf.options.(gogoproto.goproto_stringer)=false
+            backoff:
+              type:
+                - string
+                - "null"
+              title: Backoff is a duration to wait before trying to execute the operation again if it was not completed
+            executions:
+              type:
+                - integer
+                - "null"
+              format: int32
+              title: Executions is the number of time the operation was executed
+            disabled:
+              type:
+                - boolean
+                - "null"
+              title: Disabled indicates if the plugin is globally disabled
+            status:
+              type:
+                - string
+                - "null"
+              format: byte
+              title: |-
+                +kubebuilder:validation:Schemaless
+                +kubebuilder:pruning:PreserveUnknownFields
+                +kubebuilder:validation:Type=object
+                Status holds the internal status of the plugin for this operation
+        title: StepPluginStatuses holds the status of the step plugins executed
+    title: CanaryStatus status fields that only pertain to the canary rollout
+  blueGreen:
+    type:
+      - object
+      - "null"
+    properties:
+      previewSelector:
+        type:
+          - string
+          - "null"
+        title: |-
+          PreviewSelector indicates which replicas set the preview service is serving traffic to
+          +optional
+      activeSelector:
+        type:
+          - string
+          - "null"
+        title: |-
+          ActiveSelector indicates which replicas set the active service is serving traffic to
+          +optional
+      scaleUpPreviewCheckPoint:
+        type:
+          - boolean
+          - "null"
+        title: |-
+          ScaleUpPreviewCheckPoint indicates that the Replicaset receiving traffic from the preview service is ready to be scaled up after the rollout is unpaused
+          +optional
+      prePromotionAnalysisRunStatus:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+          status:
+            type:
+              - string
+              - "null"
+          message:
+            type:
+              - string
+              - "null"
+      postPromotionAnalysisRunStatus:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+          status:
+            type:
+              - string
+              - "null"
+          message:
+            type:
+              - string
+              - "null"
+    title: BlueGreenStatus status fields that only pertain to the blueGreen rollout
+  HPAReplicas:
+    type:
+      - integer
+      - "null"
+    format: int32
+    title: |-
+      HPAReplicas the number of non-terminated replicas that are receiving active traffic
+      +optional
+  selector:
+    type:
+      - string
+      - "null"
+    title: |-
+      Selector that identifies the pods that are receiving active traffic
+      +optional
+  stableRS:
+    type:
+      - string
+      - "null"
+    title: |-
+      StableRS indicates the replicaset that has successfully rolled out
+      +optional
+  restartedAt:
+    type:
+      - object
+      - "null"
+    properties:
+      seconds:
+        type:
+          - string
+          - "null"
+        format: int64
+        description: |-
+          Represents seconds of UTC time since Unix epoch
+          1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+          9999-12-31T23:59:59Z inclusive.
+      nanos:
+        type:
+          - integer
+          - "null"
+        format: int32
+        description: |-
+          Non-negative fractions of a second at nanosecond resolution. Negative
+          second values with fractions must still have non-negative nanos values
+          that count forward in time. Must be from 0 to 999,999,999
+          inclusive. This field may be limited in precision depending on context.
+    description: |-
+      Time is a wrapper around time.Time which supports correct
+      marshaling to YAML and JSON.  Wrappers are provided for many
+      of the factory methods that the time package offers.
+
+      +protobuf.options.marshal=false
+      +protobuf.as=Timestamp
+      +protobuf.options.(gogoproto.goproto_stringer)=false
+  promoteFull:
+    type:
+      - boolean
+      - "null"
+    description: PromoteFull indicates if the rollout should perform a full promotion, skipping analysis and pauses.
+  phase:
+    type:
+      - string
+      - "null"
+    title: Phase is the rollout phase. Clients should only rely on the value if status.observedGeneration equals metadata.generation
+  message:
+    type:
+      - string
+      - "null"
+    title: Message provides details on why the rollout is in its current phase
+  workloadObservedGeneration:
+    type:
+      - string
+      - "null"
+    title: |-
+      The generation of referenced workload observed by the rollout controller
+      +optional
+  alb:
+    type:
+      - object
+      - "null"
+    properties:
+      loadBalancer:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+          arn:
+            type:
+              - string
+              - "null"
+          fullName:
+            type:
+              - string
+              - "null"
+            title: |-
+              FullName is the full name of the resource
+              +optional
+      canaryTargetGroup:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+          arn:
+            type:
+              - string
+              - "null"
+          fullName:
+            type:
+              - string
+              - "null"
+            title: |-
+              FullName is the full name of the resource
+              +optional
+      stableTargetGroup:
+        type:
+          - object
+          - "null"
+        properties:
+          name:
+            type:
+              - string
+              - "null"
+          arn:
+            type:
+              - string
+              - "null"
+          fullName:
+            type:
+              - string
+              - "null"
+            title: |-
+              FullName is the full name of the resource
+              +optional
+      ingress:
+        type:
+          - string
+          - "null"
+  albs:
+    type:
+      - array
+      - "null"
+    items:
+      type:
+        - object
+        - "null"
+      properties:
+        loadBalancer:
+          type:
+            - object
+            - "null"
+          properties:
+            name:
+              type:
+                - string
+                - "null"
+            arn:
+              type:
+                - string
+                - "null"
+            fullName:
+              type:
+                - string
+                - "null"
+              title: |-
+                FullName is the full name of the resource
+                +optional
+        canaryTargetGroup:
+          type:
+            - object
+            - "null"
+          properties:
+            name:
+              type:
+                - string
+                - "null"
+            arn:
+              type:
+                - string
+                - "null"
+            fullName:
+              type:
+                - string
+                - "null"
+              title: |-
+                FullName is the full name of the resource
+                +optional
+        stableTargetGroup:
+          type:
+            - object
+            - "null"
+          properties:
+            name:
+              type:
+                - string
+                - "null"
+            arn:
+              type:
+                - string
+                - "null"
+            fullName:
+              type:
+                - string
+                - "null"
+              title: |-
+                FullName is the full name of the resource
+                +optional
+        ingress:
+          type:
+            - string
+            - "null"
+    title: / ALBs keeps information regarding multiple ALBs and TargetGroups in a multi ingress scenario
+title: RolloutStatus is the status for a Rollout resource
+$schema: http://json-schema.org/schema#

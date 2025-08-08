@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "address": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Address is the HTTP address and port of the Graphite server"
+    },
+    "query": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Query is a raw Graphite query to perform"
+    }
+  },
+  "title": "GraphiteMetric defines the Graphite query to perform canary analysis",
+  "$schema": "http://json-schema.org/schema#"
+}

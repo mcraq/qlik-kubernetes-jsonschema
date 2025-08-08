@@ -1,0 +1,107 @@
+type: object
+properties:
+  address:
+    type:
+      - string
+      - "null"
+  application:
+    type:
+      - string
+      - "null"
+  canaryConfigName:
+    type:
+      - string
+      - "null"
+  metricsAccountName:
+    type:
+      - string
+      - "null"
+  configurationAccountName:
+    type:
+      - string
+      - "null"
+  storageAccountName:
+    type:
+      - string
+      - "null"
+  threshold:
+    type:
+      - object
+      - "null"
+    properties:
+      pass:
+        type:
+          - string
+          - "null"
+        format: int64
+      marginal:
+        type:
+          - string
+          - "null"
+        format: int64
+  scopes:
+    type:
+      - array
+      - "null"
+    items:
+      type:
+        - object
+        - "null"
+      properties:
+        name:
+          type:
+            - string
+            - "null"
+        controlScope:
+          type:
+            - object
+            - "null"
+          properties:
+            scope:
+              type:
+                - string
+                - "null"
+            region:
+              type:
+                - string
+                - "null"
+            step:
+              type:
+                - string
+                - "null"
+              format: int64
+            start:
+              type:
+                - string
+                - "null"
+            end:
+              type:
+                - string
+                - "null"
+        experimentScope:
+          type:
+            - object
+            - "null"
+          properties:
+            scope:
+              type:
+                - string
+                - "null"
+            region:
+              type:
+                - string
+                - "null"
+            step:
+              type:
+                - string
+                - "null"
+              format: int64
+            start:
+              type:
+                - string
+                - "null"
+            end:
+              type:
+                - string
+                - "null"
+$schema: http://json-schema.org/schema#

@@ -1,0 +1,77 @@
+{
+  "type": "object",
+  "properties": {
+    "virtualService": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Name is the name of virtual service"
+        },
+        "routes": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": "Routes is list of HTTP routes within virtual router associated with virtual service to edit. If omitted, virtual service must have a single route of this type."
+        }
+      },
+      "title": "AppMeshVirtualService holds information on the virtual service the rollout needs to modify"
+    },
+    "virtualNodeGroup": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "canaryVirtualNodeRef": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "name": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Name is the name of VirtualNode CR"
+            }
+          },
+          "title": "AppMeshVirtualNodeReference holds a reference to VirtualNode.appmesh.k8s.aws"
+        },
+        "stableVirtualNodeRef": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "name": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Name is the name of VirtualNode CR"
+            }
+          },
+          "title": "AppMeshVirtualNodeReference holds a reference to VirtualNode.appmesh.k8s.aws"
+        }
+      },
+      "title": "AppMeshVirtualNodeGroup holds information about targets used for routing traffic to a virtual service"
+    }
+  },
+  "title": "AppMeshTrafficRouting configuration for AWS AppMesh service mesh to enable fine grain configuration",
+  "$schema": "http://json-schema.org/schema#"
+}

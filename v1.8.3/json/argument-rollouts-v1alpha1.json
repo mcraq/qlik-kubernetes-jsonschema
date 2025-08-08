@@ -1,0 +1,66 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Name is the name of the argument"
+    },
+    "value": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "Value is the value of the argument\n+optional"
+    },
+    "valueFrom": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "secretKeyRef": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "name": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Name is the name of the secret"
+            },
+            "key": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Key is the key of the secret to select from."
+            }
+          }
+        },
+        "fieldRef": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "fieldPath": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Required: Path of the field to select in the specified API version"
+            }
+          }
+        }
+      }
+    }
+  },
+  "title": "Argument is an argument to an AnalysisRun",
+  "$schema": "http://json-schema.org/schema#"
+}

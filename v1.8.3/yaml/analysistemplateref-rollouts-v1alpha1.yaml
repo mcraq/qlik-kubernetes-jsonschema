@@ -1,0 +1,17 @@
+type: object
+properties:
+  templateName:
+    type:
+      - string
+      - "null"
+    title: |-
+      TemplateName name of template to use in AnalysisRun
+      +optional
+  clusterScope:
+    type:
+      - boolean
+      - "null"
+    title: |-
+      Whether to look for the templateName at cluster scope or namespace scope
+      +optional
+$schema: http://json-schema.org/schema#

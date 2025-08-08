@@ -1,0 +1,18 @@
+type: object
+properties:
+  name:
+    type:
+      - string
+      - "null"
+  arn:
+    type:
+      - string
+      - "null"
+  fullName:
+    type:
+      - string
+      - "null"
+    title: |-
+      FullName is the full name of the resource
+      +optional
+$schema: http://json-schema.org/schema#

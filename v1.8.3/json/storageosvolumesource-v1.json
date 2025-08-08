@@ -1,0 +1,51 @@
+{
+  "type": "object",
+  "properties": {
+    "volumeName": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "volumeName is the human-readable name of the StorageOS volume.  Volume\nnames are only unique within a namespace."
+    },
+    "volumeNamespace": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "volumeNamespace specifies the scope of the volume within StorageOS.  If no\nnamespace is specified then the Pod's namespace will be used.  This allows the\nKubernetes name scoping to be mirrored within StorageOS for tighter integration.\nSet VolumeName to any name to override the default behaviour.\nSet to \"default\" if you are not using namespaces within StorageOS.\nNamespaces that do not pre-exist within StorageOS will be created.\n+optional"
+    },
+    "fsType": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "fsType is the filesystem type to mount.\nMust be a filesystem type supported by the host operating system.\nEx. \"ext4\", \"xfs\", \"ntfs\". Implicitly inferred to be \"ext4\" if unspecified.\n+optional"
+    },
+    "readOnly": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "title": "readOnly defaults to false (read/write). ReadOnly here will force\nthe ReadOnly setting in VolumeMounts.\n+optional"
+    },
+    "secretRef": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Name of the referent.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names\nTODO: Add other useful fields. apiVersion, kind, uid?\n+optional"
+        }
+      },
+      "title": "LocalObjectReference contains enough information to let you locate the\nreferenced object inside the same namespace.\n+structType=atomic"
+    }
+  },
+  "description": "Represents a StorageOS persistent volume resource.",
+  "$schema": "http://json-schema.org/schema#"
+}

@@ -1,0 +1,203 @@
+{
+  "type": "object",
+  "properties": {
+    "rolloutAnalysis": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "templates": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "templateName": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "TemplateName name of template to use in AnalysisRun\n+optional"
+              },
+              "clusterScope": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "title": "Whether to look for the templateName at cluster scope or namespace scope\n+optional"
+              }
+            }
+          },
+          "title": "Templates reference to a list of analysis templates to combine for an AnalysisRun\n+patchMergeKey=templateName\n+patchStrategy=merge"
+        },
+        "args": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Name argument name"
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Value a hardcoded value for the argument. This field is a one of field with valueFrom"
+              },
+              "valueFrom": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "podTemplateHashValue": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "title": "PodTemplateHashValue gets the value from one of the children ReplicaSet's Pod Template Hash"
+                  },
+                  "fieldRef": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "fieldPath": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "title": "Required: Path of the field to select in the specified API version"
+                      }
+                    }
+                  }
+                },
+                "title": "ArgumentValueFrom defines references to fields within resources to grab for the value (i.e. Pod Template Hash)"
+              }
+            },
+            "title": "AnalysisRunArgument argument to add to analysisRun"
+          },
+          "title": "Args the arguments that will be added to the AnalysisRuns\n+patchMergeKey=name\n+patchStrategy=merge"
+        },
+        "dryRun": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "metricName": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Name of the metric which needs to be evaluated in the Dry-Run mode. Wildcard '*' is supported and denotes all\nthe available metrics."
+              }
+            },
+            "description": "DryRun defines the settings for running the analysis in Dry-Run mode."
+          },
+          "title": "DryRun object contains the settings for running the analysis in Dry-Run mode\n+patchMergeKey=metricName\n+patchStrategy=merge\n+optional"
+        },
+        "measurementRetention": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "metricName": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "MetricName is the name of the metric on which this retention policy should be applied."
+              },
+              "limit": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int32",
+                "description": "Limit is the maximum number of measurements to be retained for this given metric."
+              }
+            },
+            "description": "MeasurementRetention defines the settings for retaining the number of measurements during the analysis."
+          },
+          "title": "MeasurementRetention object contains the settings for retaining the number of measurements during the analysis\n+patchMergeKey=metricName\n+patchStrategy=merge\n+optional"
+        },
+        "analysisRunMetadata": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "labels": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "title": "Labels Additional labels to add to the AnalysisRun\n+optional"
+            },
+            "annotations": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "title": "Annotations additional annotations to add to the AnalysisRun\n+optional"
+            }
+          },
+          "title": "AnalysisRunMetadata extra labels to add to the AnalysisRun"
+        }
+      },
+      "title": "RolloutAnalysis defines a template that is used to create a analysisRun"
+    },
+    "startingStep": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32",
+      "title": "StartingStep indicates which step the background analysis should start on\nIf not listed, controller defaults to 0"
+    }
+  },
+  "title": "RolloutAnalysisBackground defines a template that is used to create a background analysisRun",
+  "$schema": "http://json-schema.org/schema#"
+}

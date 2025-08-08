@@ -1,0 +1,105 @@
+type: object
+properties:
+  targetPortal:
+    type:
+      - string
+      - "null"
+    description: |-
+      targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port
+      is other than default (typically TCP ports 860 and 3260).
+  iqn:
+    type:
+      - string
+      - "null"
+    description: iqn is the target iSCSI Qualified Name.
+  lun:
+    type:
+      - integer
+      - "null"
+    format: int32
+    description: lun represents iSCSI Target Lun number.
+  iscsiInterface:
+    type:
+      - string
+      - "null"
+    title: |-
+      iscsiInterface is the interface Name that uses an iSCSI transport.
+      Defaults to 'default' (tcp).
+      +optional
+  fsType:
+    type:
+      - string
+      - "null"
+    title: |-
+      fsType is the filesystem type of the volume that you want to mount.
+      Tip: Ensure that the filesystem type is supported by the host operating system.
+      Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
+      More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi
+      TODO: how do we prevent errors in the filesystem from compromising the machine
+      +optional
+  readOnly:
+    type:
+      - boolean
+      - "null"
+    title: |-
+      readOnly here will force the ReadOnly setting in VolumeMounts.
+      Defaults to false.
+      +optional
+  portals:
+    type:
+      - array
+      - "null"
+    items:
+      type:
+        - string
+        - "null"
+    title: |-
+      portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port
+      is other than default (typically TCP ports 860 and 3260).
+      +optional
+  chapAuthDiscovery:
+    type:
+      - boolean
+      - "null"
+    title: |-
+      chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication
+      +optional
+  chapAuthSession:
+    type:
+      - boolean
+      - "null"
+    title: |-
+      chapAuthSession defines whether support iSCSI Session CHAP authentication
+      +optional
+  secretRef:
+    type:
+      - object
+      - "null"
+    properties:
+      name:
+        type:
+          - string
+          - "null"
+        title: |-
+          Name of the referent.
+          More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+          TODO: Add other useful fields. apiVersion, kind, uid?
+          +optional
+    title: |-
+      LocalObjectReference contains enough information to let you locate the
+      referenced object inside the same namespace.
+      +structType=atomic
+  initiatorName:
+    type:
+      - string
+      - "null"
+    title: |-
+      initiatorName is the custom iSCSI Initiator Name.
+      If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface
+      <target portal>:<volume name> will be created for the connection.
+      +optional
+description: |-
+  Represents an ISCSI disk.
+  ISCSI volumes can only be mounted as read/write once.
+  ISCSI volumes support ownership management and SELinux relabeling.
+$schema: http://json-schema.org/schema#

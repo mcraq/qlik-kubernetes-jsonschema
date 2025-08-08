@@ -1,0 +1,70 @@
+type: object
+properties:
+  metric:
+    type:
+      - object
+      - "null"
+    properties:
+      dimensions:
+        type:
+          - array
+          - "null"
+        items:
+          type:
+            - object
+            - "null"
+          properties:
+            name:
+              type:
+                - string
+                - "null"
+            value:
+              type:
+                - string
+                - "null"
+      metricName:
+        type:
+          - string
+          - "null"
+      namespace:
+        type:
+          - string
+          - "null"
+  period:
+    type:
+      - object
+      - "null"
+    properties:
+      type:
+        type:
+          - string
+          - "null"
+        format: int64
+      intVal:
+        type:
+          - integer
+          - "null"
+        format: int32
+      strVal:
+        type:
+          - string
+          - "null"
+    description: |-
+      +protobuf=true
+      +protobuf.options.(gogoproto.goproto_stringer)=false
+      +k8s:openapi-gen=true
+    title: |-
+      IntOrString is a type that can hold an int32 or a string.  When used in
+      JSON or YAML marshalling and unmarshalling, it produces or consumes the
+      inner type.  This allows you to have, for example, a JSON field that can
+      accept a name or number.
+      TODO: Rename to Int32OrString
+  stat:
+    type:
+      - string
+      - "null"
+  unit:
+    type:
+      - string
+      - "null"
+$schema: http://json-schema.org/schema#

@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "pingService": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "name of the ping service"
+    },
+    "pongService": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "title": "name of the pong service"
+    }
+  },
+  "description": "PingPongSpec holds the ping and pong service name.",
+  "$schema": "http://json-schema.org/schema#"
+}
